@@ -148,6 +148,12 @@
         "name": "Camoufox",
         "description": "Fetches pages through a self-hosted Camoufox service (stealth Firefox). Patches bot-detection signals at the C++ level, bypassing Google and Cloudflare. See homelab/camoufox for the Docker service.",
         "version": "1.0.0"
+      },
+      {
+        "path": "transports/degoog-fplay",
+        "name": "degoog-fplay",
+        "description": "Uses a browser extension to harvest a genuine session for each target host, then passes those cookies to curl-impersonate for outgoing requests.",
+        "version": "1.0.0"
       }
     ],
     "engines": [
