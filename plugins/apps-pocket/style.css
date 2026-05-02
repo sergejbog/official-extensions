@@ -60,9 +60,6 @@ html[dir="rtl"] .apps-pocket-panel {
   width: min(320px, calc(100vw - 16px));
   max-height: min(70vh, 480px);
   overflow: auto;
-  background: var(--bg-light);
-  color: var(--text-primary);
-  border-radius: 12px;
   padding: 12px;
 }
 

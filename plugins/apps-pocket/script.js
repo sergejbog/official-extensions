@@ -167,7 +167,7 @@ const _copyText = async (text) => {
     try {
       await navigator.clipboard.writeText(text);
       return true;
-    } catch {}
+    } catch { }
   }
   const ta = document.createElement("textarea");
   ta.value = text;
@@ -181,7 +181,7 @@ const _copyText = async (text) => {
   let ok = false;
   try {
     ok = document.execCommand("copy");
-  } catch {}
+  } catch { }
   ta.remove();
   return ok;
 };
@@ -312,7 +312,7 @@ function _ensurePanel() {
   if (panelEl) return panelEl;
   const panel = document.createElement("div");
   panel.id = PANEL_ID;
-  panel.className = "apps-pocket-panel";
+  panel.className = "apps-pocket-panel ext-card";
   panel.style.display = "none";
   panelEl = panel;
 

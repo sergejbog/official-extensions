@@ -92,7 +92,14 @@
         "path": "plugins/apps-pocket",
         "name": "Apps pocket",
         "description": "Adds a Google-style apps grid next to the settings icon. Apps are customised via the Configure button as a JSON list.",
-        "version": "1.2.1",
+        "version": "1.2.3",
+        "type": "command"
+      },
+      {
+        "path": "plugins/ddg-bang",
+        "name": "DuckDuckGo bang redirect",
+        "description": "Type !! followed by any ddg bang command to trigger them directly from degoog. This WILl route through duckduckgo.",
+        "version": "1.1.0",
         "type": "command"
       },
       {
@@ -105,6 +112,12 @@
       }
     ],
     "themes": [
+      {
+        "path": "themes/degoog-docs",
+        "name": "Degoog Docs",
+        "description": "A theme that matches the degoog documentation site.",
+        "version": "1.0.0"
+      },
       {
         "path": "themes/zen",
         "name": "Zen",
@@ -161,19 +174,19 @@
         "path": "engines/ecosia",
         "name": "Ecosia",
         "description": "Adds the Ecosia engine to degoog. Note: Ecosia may return no results when Cloudflare blocks server-side requests; use another engine if that happens.",
-        "version": "1.0.3"
+        "version": "1.0.4"
       },
       {
         "path": "engines/startpage",
         "name": "Startpage",
         "description": "Adds the Startpage engine to degoog. You can enable Anonymous View so result links open via Startpage's proxy.",
-        "version": "1.1.3"
+        "version": "1.1.4"
       },
       {
         "path": "engines/internet-archive",
         "name": "Internet Archive",
         "description": "Adds the Internet Archive as a file-type engine. Searches archive.org for downloadable files, books, software, media, and more.",
-        "version": "1.0.2"
+        "version": "1.0.3"
       },
       {
         "path": "engines/lemmy",
@@ -185,49 +198,49 @@
         "path": "engines/brave-api-search",
         "name": "Brave API Search",
         "description": "Adds the Brave API Search engine to degoog. Searches Brave.com for search results via the api instead of scraping the frontend.",
-        "version": "1.0.0"
+        "version": "1.0.1"
       },
       {
         "path": "engines/duckduckgo-images",
         "name": "DuckDuckGo Images",
         "description": "Adds the DuckDuckGo images search engine to degoog, adding an extra ~70 images per page to the image results.",
-        "version": "1.0.0"
+        "version": "1.0.1"
       },
       {
         "path": "engines/openverse",
         "name": "Openverse",
         "description": "Adds the Openverse image engine to degoog. Searches CC-licensed images aggregated from Flickr, Wikimedia and museum collections via the public Openverse API. No API key required.",
-        "version": "1.0.0"
+        "version": "1.0.1"
       },
       {
         "path": "engines/wikimedia-commons",
         "name": "Wikimedia Commons",
         "description": "Adds the Wikimedia Commons image engine to degoog. Searches the Wikimedia Commons media archive via the MediaWiki API. No API key required.",
-        "version": "1.0.0"
+        "version": "1.0.1"
       },
       {
         "path": "engines/nasa-images",
         "name": "NASA Images",
         "description": "Adds the NASA image engine to degoog. Searches the NASA Image and Video Library. No API key required.",
-        "version": "1.0.0"
+        "version": "1.0.1"
       },
       {
         "path": "engines/hacker-news",
         "name": "Hacker News",
         "description": "Adds the Hacker News engine to degoog. Searches Hacker News stories via the Algolia API. No API key required.",
-        "version": "1.0.0"
+        "version": "1.0.1"
       },
       {
         "path": "engines/duckduckgo-news",
         "name": "DuckDuckGo News",
         "description": "Adds the DuckDuckGo News engine to degoog. No API key required.",
-        "version": "1.0.0"
+        "version": "1.0.1"
       },
       {
         "path": "engines/the-guardian",
         "name": "The Guardian",
         "description": "Adds The Guardian as a news engine to degoog via the Guardian Open Platform API. Requires a free API key from open-platform.theguardian.com.",
-        "version": "1.0.0"
+        "version": "1.0.1"
       }
     ]
   }
