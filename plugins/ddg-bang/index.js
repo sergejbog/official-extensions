@@ -50,7 +50,11 @@ export default {
     if (!raw) {
       return {
         title: "DuckDuckGo bang redirect",
-        html: `<div class="command-result"><p><strong>!!wiki cats</strong> in the search bar (handled by this plugin’s script).</p><p><strong>!ddg wiki cats</strong> — bang command (aliases <code>!ddb</code>, <code>!dbang</code>).</p></div>`,
+        html: `<div class="command-result">
+          <p><strong>!!wiki cats</strong> in the search bar (handled by this plugin’s script).</p>
+          <p><strong>!ddg wiki cats</strong> — bang command (aliases <code>!ddb</code>, <code>!dbang</code>).</p>
+          <p>Note: !!wiki cats without a space after !! will not work as a plugin-only install; the host parses that as a different command name.</p>
+        </div>`,
       };
     }
 
@@ -60,7 +64,11 @@ export default {
 
     return {
       title: "Redirecting…",
-      html: `<div class="command-result"><p>Opening DuckDuckGo…</p><p><a href="${escHtml(url)}">Continue if you are not redirected</a></p><script>location.replace(${safeUrl})</script></div>`,
+      html: `<div class="command-result">
+        <p>Opening DuckDuckGo…</p>
+        <p><a href="${escHtml(url)}">Continue if you are not redirected</a></p>
+        <script>location.replace(${safeUrl})</script>
+      </div>`,
     };
   },
 };
