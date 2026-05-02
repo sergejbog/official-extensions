@@ -98,7 +98,7 @@
       {
         "path": "plugins/ddg-bang",
         "name": "DuckDuckGo bang redirect",
-        "description": "Type !! followed by any ddg bang command to trigger them directly from degoog. This WILl route through duckduckgo.",
+        "description": "Type !! followed by any ddg bang command to trigger them directly from degoog. This WILL route through duckduckgo. Find all available commands here: https://duckduckgo.com/bangs",
         "version": "1.1.0",
         "type": "command"
       },

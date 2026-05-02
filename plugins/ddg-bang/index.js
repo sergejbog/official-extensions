@@ -31,7 +31,7 @@ const redirectGoHandler = async (req) => {
 export default {
   name: "DuckDuckGo !bangs",
   description:
-    "Type !!wiki cats in the box (script sends you through the plugin /go route), or use !ddg wiki cats. DuckDuckGo resolves the !bang.",
+    "Type !! followed by any ddg bang command to trigger them directly from degoog. This WILL route through duckduckgo.",
   trigger: "ddg",
   aliases: ["ddb", "dbang"],
 
