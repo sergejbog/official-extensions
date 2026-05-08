@@ -242,6 +242,26 @@
         "description": "Adds The Guardian as a news engine to degoog via the Guardian Open Platform API. Requires a free API key from open-platform.theguardian.com.",
         "version": "1.0.1"
       }
+    ],
+    "autocomplete": [
+      {
+        "path": "autocomplete/brave",
+        "name": "Brave",
+        "description": "Autocomplete suggestions from Brave Search. Works without an API key; optionally add your Brave Search API key for authenticated requests.",
+        "version": "1.0.0"
+      },
+      {
+        "path": "autocomplete/bing",
+        "name": "Bing",
+        "description": "Autocomplete suggestions from Bing. No API key required.",
+        "version": "1.0.0"
+      },
+      {
+        "path": "autocomplete/yahoo",
+        "name": "Yahoo",
+        "description": "Autocomplete suggestions from Yahoo Search. No API key required.",
+        "version": "1.0.0"
+      }
     ]
   }
   
