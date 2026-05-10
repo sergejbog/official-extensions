@@ -17,7 +17,7 @@ Sessions are cached for **5 hours** before the extension may be asked to refresh
 ## Requirements
 
 - A browser with **WebExtensions** support and the **Fplay extension** loaded and connected to your Degoog instance.
-- **curl-impersonate** on `PATH` is optional but recommended. If it is not found, 4play falls back to the system `curl` binary. Most requests will still work; the only practical difference is that TLS fingerprinting checks (used by a small number of sites) may fail without the impersonated profile.
+- **curl-impersonate** on `PATH` is optional but recommended. If it is not found, 4play falls back to the system `curl` binary. Most requests will still work; the only practical difference is that TLS fingerprinting checks (used by a small number of sites) may fail without the impersonated profile. Google Images requires curl-impersonate and will return no results without it.
 
 ## Browser support
 
@@ -47,7 +47,7 @@ chmod +x /usr/local/bin/curl_firefox133
 
 ### With Docker
 
-The Degoog image is Alpine-based. You must use the `-linux-musl` release, which ships as a self-contained static binary. The `-linux-gnu` release is a bash wrapper script and will not run in Alpine (no bash).
+The Degoog image is Alpine-based. The curl-impersonate binaries are bash wrapper scripts, so bash must be installed first. The `-linux-musl` release is required for Alpine's libc.
 
 ```yaml
 services:
@@ -55,7 +55,7 @@ services:
     image: ghcr.io/degoog-org/degoog:latest
     entrypoint: >
       sh -c "curl -fsSL https://github.com/lexiforest/curl-impersonate/releases/download/v1.2.2/curl-impersonate-v1.2.2.x86_64-linux-musl.tar.gz
-      | tar -xz -C /usr/local/bin curl_firefox133 || true && exec /entrypoint.sh"
+      | tar -xz -C /usr/local/bin || true && exec /entrypoint.sh"
     volumes:
       - ./data:/app/data
     ports:
