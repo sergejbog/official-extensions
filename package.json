@@ -164,9 +164,9 @@
       },
       {
         "path": "transports/degoog-fplay",
-        "name": "degoog-fplay",
+        "name": "degoog-4play",
         "description": "Uses a browser extension to harvest a genuine session for each target host, then passes those cookies to curl-impersonate for outgoing requests.",
-        "version": "1.0.0"
+        "version": "1.1.0"
       }
     ],
     "engines": [

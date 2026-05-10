@@ -13,6 +13,7 @@ const BINARIES = [
   "curl_ff133",
   "curl_ff117",
   "curl_ff",
+  "curl",
 ];
 const BASE_STRIP_HEADERS = new Set(["accept-encoding", "accept"]);
 
@@ -216,7 +217,7 @@ async function _curlFetch(
 _startServer(3031, "");
 
 export default class FplayTransport {
-  name = "degoog-fplay";
+  name = "degoog-4play";
   displayName = "degoog-4play (Requires browser extension)";
   description =
     "Uses a real browser extension to harvest session cookies, then passes them to curl-impersonate for the actual requests.";

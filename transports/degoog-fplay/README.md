@@ -16,15 +16,15 @@ Sessions are cached for **5 hours** before the extension may be asked to refresh
 
 ## Requirements
 
-- **curl-impersonate** installed and on `PATH`
 - A browser with **WebExtensions** support and the **Fplay extension** loaded and connected to your Degoog instance.
+- **curl-impersonate** on `PATH` is optional but recommended. If it is not found, 4play falls back to the system `curl` binary. Most requests will still work; the only practical difference is that TLS fingerprinting checks (used by a small number of sites) may fail without the impersonated profile.
 
 ## Browser support
 
 - **Supported**: Chrome, Edge, Brave (Chromium), Firefox
 - **Not supported**: Safari (and browsers without WebExtensions `cookies` / `tabs` support)
 
-## curl-impersonate setup (required)
+## curl-impersonate setup (optional)
 
 4play uses [curl-impersonate](https://github.com/lexiforest/curl-impersonate) under the hood. It’s a patched build of curl that mimics Firefox’s TLS fingerprint; some endpoints block requests by TLS fingerprint rather than headers/cookies.
 
@@ -41,13 +41,13 @@ Download a release binary for your architecture and put it in your `PATH`:
 
 ```bash
 curl -fsSL https://github.com/lexiforest/curl-impersonate/releases/download/v1.2.2/curl-impersonate-v1.2.2.x86_64-linux-gnu.tar.gz \
-  | tar -xz -C /usr/local/bin curl_ff133
-chmod +x /usr/local/bin/curl_ff133
+  | tar -xz -C /usr/local/bin curl_firefox133
+chmod +x /usr/local/bin/curl_firefox133
 ```
 
 ### With Docker
 
-If you run Degoog in Docker, install curl-impersonate inside the container at startup (Alpine images need the `-linux-musl` release):
+The Degoog image is Alpine-based. You must use the `-linux-musl` release, which ships as a self-contained static binary. The `-linux-gnu` release is a bash wrapper script and will not run in Alpine (no bash).
 
 ```yaml
 services:
@@ -55,7 +55,7 @@ services:
     image: ghcr.io/degoog-org/degoog:latest
     entrypoint: >
       sh -c "curl -fsSL https://github.com/lexiforest/curl-impersonate/releases/download/v1.2.2/curl-impersonate-v1.2.2.x86_64-linux-musl.tar.gz
-      | tar -xz -C /usr/local/bin curl_ff133 || true && exec /entrypoint.sh"
+      | tar -xz -C /usr/local/bin curl_firefox133 || true && exec /entrypoint.sh"
     volumes:
       - ./data:/app/data
     ports:
