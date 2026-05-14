@@ -4,6 +4,13 @@ export const type = "images";
 const API_URL = "https://commons.wikimedia.org/w/api.php";
 const PAGE_SIZE = 20;
 
+const WM_TYPE_QUERY = {
+  photo: "-filemime:image/svg+xml -filemime:image/gif",
+  clipart: "filemime:image/svg+xml",
+  lineart: "filemime:image/svg+xml",
+  animated: "filemime:image/gif",
+};
+
 const _stripHtml = (value) => {
   if (typeof value !== "string") return "";
   return value.replace(/<[^>]+>/g, "").trim();
@@ -21,20 +28,29 @@ const _extractSnippet = (extmetadata) => {
   return parts.join(" — ");
 };
 
+const _typeQuery = (imageFilter) => {
+  const mod = WM_TYPE_QUERY[imageFilter?.type];
+  return mod ?? "";
+};
+
 export default class WikimediaCommonsEngine {
   name = "Wikimedia Commons";
   bangShortcut = "wikimedia";
 
   executeSearch = async (query, page = 1, _timeFilter, context) => {
     const doFetch = context?.fetch ?? fetch;
+    const imageFilter = context?.imageFilter ?? {};
     const offset = (Math.max(1, page || 1) - 1) * PAGE_SIZE;
+
+    const typeFilter = _typeQuery(imageFilter);
+    const gsrsearch = typeFilter ? `${query} ${typeFilter}` : query;
 
     const params = new URLSearchParams({
       action: "query",
       format: "json",
       generator: "search",
       gsrnamespace: "6",
-      gsrsearch: query,
+      gsrsearch,
       gsrlimit: String(PAGE_SIZE),
       gsroffset: String(offset),
       prop: "imageinfo",
@@ -67,7 +83,9 @@ export default class WikimediaCommonsEngine {
           if (!info) return null;
           const thumb = info.thumburl ?? info.url ?? "";
           const fullUrl = info.url ?? "";
-          const pageUrl = info.descriptionurl ?? `https://commons.wikimedia.org/wiki/${encodeURIComponent(p.title ?? "")}`;
+          const pageUrl =
+            info.descriptionurl ??
+            `https://commons.wikimedia.org/wiki/${encodeURIComponent(p.title ?? "")}`;
           const title = (p.title ?? "").replace(/^File:/, "");
           return {
             title,

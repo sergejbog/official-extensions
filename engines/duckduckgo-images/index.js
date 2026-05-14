@@ -9,11 +9,66 @@ const USER_AGENTS = [
   "Mozilla/5.0 (X11; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0",
 ];
 
-const _getRandomUserAgent = () => USER_AGENTS[Math.floor(Math.random() * USER_AGENTS.length)];
+const DDG_SIZE_MAP = {
+  large: "Large",
+  medium: "Medium",
+  small: "Small",
+  wallpaper: "Wallpaper",
+};
+
+const DDG_COLOR_MAP = {
+  black: "Black",
+  blue: "Blue",
+  brown: "Brown",
+  gray: "Gray",
+  green: "Green",
+  monochrome: "Monochrome",
+  orange: "Orange",
+  pink: "Pink",
+  purple: "Purple",
+  red: "Red",
+  teal: "Teal",
+  white: "White",
+  yellow: "Yellow",
+};
+
+const DDG_TYPE_MAP = {
+  photo: "photo",
+  clipart: "clipart",
+  lineart: "lineart",
+  animated: "gif",
+};
+
+const DDG_LAYOUT_MAP = {
+  square: "Square",
+  tall: "Tall",
+  wide: "Wide",
+};
+
+const DDG_NSFW_MAP = {
+  off: "-1",
+  moderate: "-1",
+  on: "1",
+};
+
+const _randAgent = () => USER_AGENTS[Math.floor(Math.random() * USER_AGENTS.length)];
 
 const _extractVqd = (html) => {
   const match = html.match(/vqd=['"]([^'"]+)['"]/);
   return match ? match[1] : null;
+};
+
+const _mkFilters = (imageFilter) => {
+  const f = imageFilter ?? {};
+  const slots = [
+    DDG_SIZE_MAP[f.size] ? `size:${DDG_SIZE_MAP[f.size]}` : "",
+    DDG_COLOR_MAP[f.color] ? `color:${DDG_COLOR_MAP[f.color]}` : "",
+    DDG_TYPE_MAP[f.type] ? `type:${DDG_TYPE_MAP[f.type]}` : "",
+    DDG_LAYOUT_MAP[f.layout] ? `layout:${DDG_LAYOUT_MAP[f.layout]}` : "",
+    "",
+    "",
+  ];
+  return slots.join(",");
 };
 
 export default class DuckDuckGoImagesEngine {
@@ -49,7 +104,7 @@ export default class DuckDuckGoImagesEngine {
 
   async executeSearch(query, page = 1, _timeFilter, context) {
     const doFetch = context?.fetch ?? fetch;
-    const ua = _getRandomUserAgent();
+    const ua = _randAgent();
     const headers = {
       "User-Agent": ua,
       Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
@@ -65,14 +120,18 @@ export default class DuckDuckGoImagesEngine {
     const vqd = _extractVqd(initHtml);
     if (!vqd) return [];
 
+    const imageFilter = context?.imageFilter ?? {};
+    const nsfwP = DDG_NSFW_MAP[imageFilter.nsfw];
+    const safeP = this.safeSearch === "on" ? "1" : "-1";
     const offset = (page - 1) * 100;
+
     const params = new URLSearchParams({
       q: query,
       vqd,
-      p: this.safeSearch === "on" ? "1" : "-1",
+      p: nsfwP ?? safeP,
       s: String(offset),
       u: "bing",
-      f: ",,,,,",
+      f: _mkFilters(imageFilter),
       l: context?.lang ? `${context.lang}-${context.lang}` : "us-en",
       o: "json",
       ...(this.hideAiImages === "hide" ? { kbj: "1" } : {}),
@@ -95,13 +154,15 @@ export default class DuckDuckGoImagesEngine {
     const data = await res.json();
     const items = data?.results ?? [];
 
-    return items.map((item) => ({
-      title: item.title ?? "",
-      url: item.url ?? "",
-      snippet: item.title ?? "",
-      source: this.name,
-      thumbnail: item.thumbnail ?? "",
-      imageUrl: item.image ?? item.thumbnail ?? "",
-    })).filter((r) => r.url && r.thumbnail);
+    return items
+      .map((item) => ({
+        title: item.title ?? "",
+        url: item.url ?? "",
+        snippet: item.title ?? "",
+        source: this.name,
+        thumbnail: item.thumbnail ?? "",
+        imageUrl: item.image ?? item.thumbnail ?? "",
+      }))
+      .filter((r) => r.url && r.thumbnail);
   }
 }

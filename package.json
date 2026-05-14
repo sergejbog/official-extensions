@@ -212,19 +212,19 @@
         "path": "engines/duckduckgo-images",
         "name": "DuckDuckGo Images",
         "description": "Adds the DuckDuckGo images search engine to degoog, adding an extra ~70 images per page to the image results.",
-        "version": "1.0.1"
+        "version": "1.1.0"
       },
       {
         "path": "engines/openverse",
         "name": "Openverse",
         "description": "Adds the Openverse image engine to degoog. Searches CC-licensed images aggregated from Flickr, Wikimedia and museum collections via the public Openverse API. No API key required.",
-        "version": "1.0.1"
+        "version": "1.1.0"
       },
       {
         "path": "engines/wikimedia-commons",
         "name": "Wikimedia Commons",
         "description": "Adds the Wikimedia Commons image engine to degoog. Searches the Wikimedia Commons media archive via the MediaWiki API. No API key required.",
-        "version": "1.0.1"
+        "version": "1.1.0"
       },
       {
         "path": "engines/nasa-images",
