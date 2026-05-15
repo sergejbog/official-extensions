@@ -1,0 +1,21 @@
+{
+  "plugin-romm": {
+    "name": "RomM",
+    "description": "Search your RomM game library",
+    "settings": {
+      "url": {
+        "label": "RomM URL",
+        "placeholder": "https://your-romm-server.com",
+        "description": "Base URL of your RomM instance"
+      },
+      "username": {
+        "label": "Username",
+        "placeholder": "RomM login username"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "RomM login password"
+      }
+    }
+  }
+}

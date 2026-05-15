@@ -64,7 +64,21 @@
         "path": "plugins/jellyfin",
         "name": "Jellyfin",
         "description": "Search your Jellyfin media library.",
-        "version": "1.3.0",
+        "version": "1.4.0",
+        "type": "command"
+      },
+      {
+        "path": "plugins/romm",
+        "name": "RomM",
+        "description": "Search your RomM game library.",
+        "version": "1.0.0",
+        "type": "command"
+      },
+      {
+        "path": "plugins/colors",
+        "name": "Colors",
+        "description": "Generate a five-color palette. Space to shuffle, click to lock.",
+        "version": "1.0.0",
         "type": "command"
       },
       {

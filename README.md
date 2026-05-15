@@ -107,6 +107,29 @@ Search your Jellyfin media library. Command plugin: query your Jellyfin server f
 
 </details>
 
+### RomM
+
+Search your RomM game library. Command plugin: query your RomM instance for games by title, with cover art in the results.
+
+<details>
+<summary>Screenshot</summary>
+
+![RomM](plugins/romm/screenshots/1.png)
+
+</details>
+
+### Colors
+
+Generate a five-color palette. Command: `!colors` for a random palette, or pass color names or hex values (e.g. `!colors orange red yellow`) to fill swatches from left to right and shuffle them with your space bar.
+
+<details>
+<summary>Screenshot</summary>
+
+![Colors 1](plugins/colors/screnshots/1.png)
+![Colors 2](plugins/colors/screnshots/2.png)
+
+</details>
+
 ### Meilisearch
 
 Search across your Meilisearch indexes. Command plugin: run searches against your Meilisearch instance from the search bar.

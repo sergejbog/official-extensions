@@ -1,4 +1,6 @@
-const JELLYFIN_PLUGIN_ID = "plugin-jellyfin";
+import { createThumbCache } from "./thumb-cache.js";
+
+const thumb = createThumbCache("jellyfin");
 
 let jellyfinUrl = "";
 let apiKey = "";
@@ -94,7 +96,27 @@ function buildSnippet(item) {
   return parts.join(" — ");
 }
 
-function renderCard(item, index) {
+async function _itemThumbSrc(item, fetchFn, authHeaders) {
+  const imageTags = item["ImageTags"];
+  if (!imageTags?.["Primary"] || !item["Id"]) return "";
+  return thumb.store(
+    fetchFn,
+    `${jellyfinUrl}/Items/${item["Id"]}/Images/Primary?maxHeight=120`,
+    authHeaders,
+  );
+}
+
+async function _renderCards(items, startIndex, fetchFn, authHeaders) {
+  const cards = await Promise.all(
+    items.map(async (item, i) => {
+      const thumbSrc = await _itemThumbSrc(item, fetchFn, authHeaders);
+      return renderCard(item, startIndex + i, thumbSrc);
+    }),
+  );
+  return cards.join("");
+}
+
+function renderCard(item, index, thumbSrc) {
   const type = String(item["Type"] || "");
   const year = item["ProductionYear"] ? ` (${item["ProductionYear"]})` : "";
 
@@ -108,12 +130,6 @@ function renderCard(item, index) {
         `<span class="result-engine-tag degoog-badge degoog-badge--engine-tag">${escHtml(t)}</span>`,
     )
     .join("");
-
-  const imageTags = item["ImageTags"];
-  const hasThumb = !!imageTags?.["Primary"];
-  const thumbSrc = hasThumb
-    ? `/api/proxy/image?auth_id=${JELLYFIN_PLUGIN_ID}&url=${encodeURIComponent(`${jellyfinUrl}/Items/${item["Id"]}/Images/Primary?maxHeight=120`)}`
-    : "";
 
   let host = "";
   try {
@@ -210,9 +226,11 @@ export default {
       default: "X-Emby-Token",
       placeholder: "X-Emby-Token",
       description:
-        "HTTP header used to authenticate image proxy requests. Change only if your server requires a different header.",
+        "HTTP header for Jellyfin API requests. Change only if your server requires a different header.",
     },
   ],
+
+  routes: [thumb.route],
 
   async init(ctx) {
     template = ctx.template;
@@ -261,9 +279,12 @@ export default {
       if (epQuery) {
         const epResults = await findEpisode(epQuery, authHeaders, itemFields, perPage, startIndex, fetchFn);
         if (epResults.length > 0) {
-          const results = epResults
-            .map((item, i) => renderCard(item, startIndex + i))
-            .join("");
+          const results = await _renderCards(
+            epResults,
+            startIndex,
+            fetchFn,
+            authHeaders,
+          );
           return {
             title: `Jellyfin: ${term} — ${epResults.length} results`,
             html: _renderMain({ content: results }),
@@ -386,9 +407,12 @@ export default {
         };
       }
 
-      const results = allItems
-        .map((item, i) => renderCard(item, startIndex + i))
-        .join("");
+      const results = await _renderCards(
+        allItems,
+        startIndex,
+        fetchFn,
+        authHeaders,
+      );
 
       const totalHints = totalRecordCount || allItems.length;
       const totalPages = Math.ceil(totalHints / perPage);
