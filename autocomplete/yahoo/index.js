@@ -1,4 +1,5 @@
 export default class YahooAutocompleteProvider {
+  isClientExposed = false;
   name = "Yahoo";
 
   async getSuggestions(query, context) {

@@ -19,6 +19,7 @@ const _extractUrl = (args) => {
 };
 
 export default {
+  isClientExposed: true,
   name: "QR Code",
   description: "Generate a QR code for a URL.",
   trigger: "qr",

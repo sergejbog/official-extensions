@@ -40,6 +40,7 @@ const _buildKl = (lang) => {
 };
 
 export default class DuckDuckGoNewsEngine {
+  isClientExposed = false;
   name = "DuckDuckGo News";
   bangShortcut = "ddgnews";
   safeSearch = "off";

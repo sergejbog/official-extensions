@@ -50,6 +50,7 @@ const _stripHtml = (html) => {
 };
 
 export default class TheGuardianEngine {
+  isClientExposed = false;
   name = "The Guardian";
   bangShortcut = "guardian";
 

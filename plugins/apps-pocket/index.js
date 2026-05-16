@@ -23,6 +23,7 @@ const _json = (body, status = 200) => {
 };
 
 export default {
+  isClientExposed: false,
   name: "Apps pocket",
   description:
     "Adds a Google-style apps grid next to the settings icon. Each app has a label, icon URL and link.",

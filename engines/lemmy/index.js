@@ -20,6 +20,7 @@ const _normalizeInstance = (value) => {
 };
 
 export default class LemmyEngine {
+  isClientExposed = false;
   name = "Lemmy";
   bangShortcut = "lemmy";
 

@@ -197,6 +197,7 @@ async function findEpisode(epQuery, authHeaders, itemFields, limit, startIndex, 
 }
 
 export default {
+  isClientExposed: false,
   name: "Jellyfin",
   description: "Search your Jellyfin media library",
   trigger: "jellyfin",

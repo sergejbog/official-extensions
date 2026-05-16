@@ -17,6 +17,7 @@ const OV_ASPECT_MAP = {
 };
 
 export default class OpenverseEngine {
+  isClientExposed = false;
   name = "Openverse";
   bangShortcut = "openverse";
 

@@ -49,6 +49,7 @@ const _originOf = (url) => {
 };
 
 export default class BrowserlessTransport {
+  isClientExposed = false;
   name = "browserless";
   displayName = "Browserless";
   description =

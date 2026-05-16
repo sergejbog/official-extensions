@@ -85,6 +85,7 @@ async function searchIndex(meiliUrlVal, apiKeyVal, index, query, offset, fetchFn
 }
 
 export default {
+  isClientExposed: false,
   name: "Meilisearch",
   description: "Search across your Meilisearch indexes",
   trigger: "meili",

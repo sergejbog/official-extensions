@@ -135,6 +135,7 @@ const _formatCount = (n) => {
 }
 
 export const slot = {
+  isClientExposed: false,
   id: "github-slot",
   name: "GitHub",
   position: "above-results",

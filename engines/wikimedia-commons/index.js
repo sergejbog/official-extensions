@@ -34,6 +34,7 @@ const _typeQuery = (imageFilter) => {
 };
 
 export default class WikimediaCommonsEngine {
+  isClientExposed = false;
   name = "Wikimedia Commons";
   bangShortcut = "wikimedia";
 

@@ -348,6 +348,7 @@ const _serializeItem = (item) => {
 }
 
 const slot = {
+  isClientExposed: false,
   name: "Home RSS Feeds",
   description: "RSS/Atom news feed reader with home page integration",
   trigger: "rss",

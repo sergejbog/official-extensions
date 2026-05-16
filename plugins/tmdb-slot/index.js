@@ -229,6 +229,7 @@ const _wrapTabs = (tabs) => {
 };
 
 export const slot = {
+  isClientExposed: true,
   id: "tmdb",
   name: "TMDb",
   position: "above-results",

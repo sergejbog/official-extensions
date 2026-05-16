@@ -23,6 +23,7 @@ const _formatMath = (expr) => {
 };
 
 export const slot = {
+  isClientExposed: true,
   id: "math-slot",
   name: "Math",
   description: "Evaluates math expressions natively via API.",

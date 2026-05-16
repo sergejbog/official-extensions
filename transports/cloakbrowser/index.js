@@ -58,6 +58,7 @@ const _originOf = (url) => {
 };
 
 export default class CloakBrowserTransport {
+  isClientExposed = false;
   name = "cloakbrowser";
   displayName = "CloakBrowser";
   description =

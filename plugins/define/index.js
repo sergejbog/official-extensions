@@ -15,6 +15,7 @@ const _extractWord = (args) => {
 }
 
 export default {
+  isClientExposed: false,
   name: "Define",
   description: "Look up word definitions using the Free Dictionary API.",
   trigger: "define",

@@ -38,6 +38,7 @@ const _applyFixes = (query, errors) => {
 const _toLang = (tag) => tag.split(/[-_]/)[0].toLowerCase();
 
 export const interceptor = {
+  isClientExposed: false,
   name: "Spell Check",
   description:
     "Intercepts search queries and corrects spelling using Yandex Speller.",
@@ -112,6 +113,7 @@ export const interceptor = {
 };
 
 export const slot = {
+  isClientExposed: false,
   name: "Spell Check",
   description: "Shows a correction banner when a query was spell-checked.",
   position: "at-a-glance",

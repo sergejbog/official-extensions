@@ -1,289 +1,290 @@
 {
-    "name": "official-extensions",
-    "description": "Plugins, themes, engines, and transports for degoog search.",
-    "repo-image": "https://avatars.githubusercontent.com/u/280656364",
-    "author": "fccview",
-    "plugins": [
-      {
-        "path": "plugins/weather",
-        "name": "Weather",
-        "description": "Shows weather information using Open-Meteo.",
-        "version": "1.3.1",
-        "type": "command"
-      },
-      {
-        "path": "plugins/define",
-        "name": "Define",
-        "description": "Look up word definitions using the Free Dictionary API.",
-        "version": "1.1.2",
-        "type": "command"
-      },
-      {
-        "path": "plugins/time",
-        "name": "Time",
-        "description": "Show current time in a timezone or city.",
-        "version": "1.1.1",
-        "type": "command"
-      },
-      {
-        "path": "plugins/qr",
-        "name": "QR Code",
-        "description": "Generate a QR code for a URL.",
-        "version": "1.1.1",
-        "type": "command"
-      },
-      {
-        "path": "plugins/password",
-        "name": "Password",
-        "description": "Generate a random password.",
-        "version": "1.1.1",
-        "type": "command"
-      },
-      {
-        "path": "plugins/search-history",
-        "name": "Search history",
-        "description": "Stores search history in data/history.json with timestamps; !history shows a paginated, deletable list.",
-        "version": "1.2.0",
-        "type": "command"
-      },
-      {
-        "path": "plugins/tmdb-slot",
-        "name": "TMDb",
-        "description": "Shows movie/TV show details above search results.",
-        "version": "1.4.0",
-        "type": "slot"
-      },
-      {
-        "path": "plugins/math-slot",
-        "name": "Math",
-        "description": "Evaluates math expressions and shows the result above search results.",
-        "version": "1.1.1",
-        "type": "slot"
-      },
-      {
-        "path": "plugins/jellyfin",
-        "name": "Jellyfin",
-        "description": "Search your Jellyfin media library.",
-        "version": "1.4.0",
-        "type": "command"
-      },
-      {
-        "path": "plugins/romm",
-        "name": "RomM",
-        "description": "Search your RomM game library.",
-        "version": "1.0.0",
-        "type": "command"
-      },
-      {
-        "path": "plugins/colors",
-        "name": "Colors",
-        "description": "Generate a five-color palette. Space to shuffle, click to lock.",
-        "version": "1.0.0",
-        "type": "command"
-      },
-      {
-        "path": "plugins/meilisearch",
-        "name": "Meilisearch",
-        "description": "Search across your Meilisearch indexes.",
-        "version": "1.2.0",
-        "type": "command"
-      },
-      {
-        "path": "plugins/rss",
-        "name": "Home RSS Feeds",
-        "description": "Shows RSS feed items above search results.",
-        "version": "1.5.0",
-        "type": "slot"
-      },
-      {
-        "path": "plugins/github-slot",
-        "name": "GitHub",
-        "description": "When search results include GitHub repos or users, shows styled info above results.",
-        "version": "1.1.0",
-        "type": "slot"
-      },
-      {
-        "path": "plugins/apps-pocket",
-        "name": "Apps pocket",
-        "description": "Adds a Google-style apps grid next to the settings icon. Apps are customised via the Configure button as a JSON list.",
-        "version": "1.2.4",
-        "type": "command",
-        "minDegoogVersion": "0.17.0"
-      },
-      {
-        "path": "plugins/spell-check",
-        "name": "Spell Check",
-        "description": "Intercepts search queries and corrects spelling using Yandex Speller. No API key required.",
-        "version": "1.1.0",
-        "type": "interceptor"
-      },
-      {
-        "path": "plugins/ddg-bang",
-        "name": "DuckDuckGo bang redirect",
-        "description": "Type !! followed by any ddg bang command to trigger them directly from degoog. This WILL route through duckduckgo. Find all available commands here: https://duckduckgo.com/bangs",
-        "version": "1.2.0",
-        "type": "command"
-      },
-      {
-        "path": "plugins/file-tab",
-        "name": "File tab results",
-        "description": "Adds a Files tab to search results that finds downloadable files via file-type engines.",
-        "version": "1.1.1",
-        "type": "search-result-tab",
-        "dependencies": ["https://github.com/fccview/fccview-degoog-extensions/engines/internet-archive"]
-      }
-    ],
-    "themes": [
-      {
-        "path": "themes/degoog-docs",
-        "name": "Degoog Docs",
-        "description": "A theme that matches the degoog documentation site.",
-        "version": "1.0.1"
-      },
-      {
-        "path": "themes/zen",
-        "name": "Zen",
-        "description": "A minimalist calming theme.",
-        "version": "2.0.0"
-      },
-      {
-        "path": "themes/catpuccin",
-        "name": "Catppuccin",
-        "description": "Mocha (blue), Latte (light blue), Rose (red/coral), Peach (orange/amber).",
-        "version": "1.1.0"
-      },
-      {
-        "path": "themes/pokemon",
-        "name": "Pokemon",
-        "description": "Starter-inspired: Pikachu (yellow), Bulbasaur (green), Charmander (orange), Squirtle (blue).",
-        "version": "1.2.0"
-      }
-    ],
-    "transports": [
-      {
-        "path": "transports/flaresolverr",
-        "name": "FlareSolverr",
-        "description": "Bypass Cloudflare challenges via a FlareSolverr instance. Once configured, engines can select flaresolverr as their outgoing transport.",
-        "version": "1.1.0"
-      },
-      {
-        "path": "transports/browserless",
-        "name": "Browserless",
-        "description": "Fetches pages through a self-hosted Browserless instance (or any compatible headless browser service). Renders JavaScript before returning HTML — useful for engines like Google Images that block standard HTTP requests. Compatible with browserless/chromium, CloakBrowser wrappers, and any service exposing POST /content.",
-        "version": "1.1.0"
-      },
-      {
-        "path": "transports/cloakbrowser",
-        "name": "CloakBrowser",
-        "description": "Fetches pages through a self-hosted CloakBrowser service (stealth Chromium). Patches bot-detection signals at the C++ level — navigator.webdriver, canvas, CDP leaks — bypassing Google and Cloudflare. See homelab/cloakbrowser for the Docker service.",
-        "version": "1.0.0"
-      },
-      {
-        "path": "transports/camoufox",
-        "name": "Camoufox",
-        "description": "Fetches pages through a self-hosted Camoufox service (stealth Firefox). Patches bot-detection signals at the C++ level, bypassing Google and Cloudflare. See homelab/camoufox for the Docker service.",
-        "version": "1.0.0"
-      },
-      {
-        "path": "transports/degoog-fplay",
-        "name": "degoog-4play",
-        "description": "Uses a browser extension to harvest a genuine session for each target host, then passes those cookies to curl-impersonate for outgoing requests.",
-        "version": "1.1.0"
-      }
-    ],
-    "engines": [
-      {
-        "path": "engines/ecosia",
-        "name": "Ecosia",
-        "description": "Adds the Ecosia engine to degoog. Note: Ecosia may return no results when Cloudflare blocks server-side requests; use another engine if that happens.",
-        "version": "1.0.4"
-      },
-      {
-        "path": "engines/startpage",
-        "name": "Startpage",
-        "description": "Adds the Startpage engine to degoog. You can enable Anonymous View so result links open via Startpage's proxy.",
-        "version": "1.1.4"
-      },
-      {
-        "path": "engines/internet-archive",
-        "name": "Internet Archive",
-        "description": "Adds the Internet Archive as a file-type engine. Searches archive.org for downloadable files, books, software, media, and more.",
-        "version": "1.0.3"
-      },
-      {
-        "path": "engines/lemmy",
-        "name": "Lemmy World",
-        "description": "Adds the Lemmy engine to degoog. Searches Lemmy for posts, comments, and communities.",
-        "version": "1.0.1"
-      },
-      {
-        "path": "engines/brave-api-search",
-        "name": "Brave API Search",
-        "description": "Adds the Brave API Search engine to degoog. Searches Brave.com for search results via the api instead of scraping the frontend.",
-        "version": "1.0.1"
-      },
-      {
-        "path": "engines/duckduckgo-images",
-        "name": "DuckDuckGo Images",
-        "description": "Adds the DuckDuckGo images search engine to degoog, adding an extra ~70 images per page to the image results.",
-        "version": "1.1.0"
-      },
-      {
-        "path": "engines/openverse",
-        "name": "Openverse",
-        "description": "Adds the Openverse image engine to degoog. Searches CC-licensed images aggregated from Flickr, Wikimedia and museum collections via the public Openverse API. No API key required.",
-        "version": "1.1.0"
-      },
-      {
-        "path": "engines/wikimedia-commons",
-        "name": "Wikimedia Commons",
-        "description": "Adds the Wikimedia Commons image engine to degoog. Searches the Wikimedia Commons media archive via the MediaWiki API. No API key required.",
-        "version": "1.1.0"
-      },
-      {
-        "path": "engines/nasa-images",
-        "name": "NASA Images",
-        "description": "Adds the NASA image engine to degoog. Searches the NASA Image and Video Library. No API key required.",
-        "version": "1.0.1"
-      },
-      {
-        "path": "engines/hacker-news",
-        "name": "Hacker News",
-        "description": "Adds the Hacker News engine to degoog. Searches Hacker News stories via the Algolia API. No API key required.",
-        "version": "1.0.1"
-      },
-      {
-        "path": "engines/duckduckgo-news",
-        "name": "DuckDuckGo News",
-        "description": "Adds the DuckDuckGo News engine to degoog. No API key required.",
-        "version": "1.0.1"
-      },
-      {
-        "path": "engines/the-guardian",
-        "name": "The Guardian",
-        "description": "Adds The Guardian as a news engine to degoog via the Guardian Open Platform API. Requires a free API key from open-platform.theguardian.com.",
-        "version": "1.0.1"
-      }
-    ],
-    "autocomplete": [
-      {
-        "path": "autocomplete/brave",
-        "name": "Brave",
-        "description": "Autocomplete suggestions from Brave Search. Works without an API key; optionally add your Brave Search API key for authenticated requests.",
-        "version": "1.0.0"
-      },
-      {
-        "path": "autocomplete/bing",
-        "name": "Bing",
-        "description": "Autocomplete suggestions from Bing. No API key required.",
-        "version": "1.0.0"
-      },
-      {
-        "path": "autocomplete/yahoo",
-        "name": "Yahoo",
-        "description": "Autocomplete suggestions from Yahoo Search. No API key required.",
-        "version": "1.0.0"
-      }
-    ]
-  }
-  
+  "name": "official-extensions",
+  "description": "Plugins, themes, engines, and transports for degoog search.",
+  "repo-image": "https://avatars.githubusercontent.com/u/280656364",
+  "author": "fccview",
+  "plugins": [
+    {
+      "path": "plugins/weather",
+      "name": "Weather",
+      "description": "Shows weather information using Open-Meteo.",
+      "version": "1.3.2",
+      "type": "command"
+    },
+    {
+      "path": "plugins/define",
+      "name": "Define",
+      "description": "Look up word definitions using the Free Dictionary API.",
+      "version": "1.1.3",
+      "type": "command"
+    },
+    {
+      "path": "plugins/time",
+      "name": "Time",
+      "description": "Show current time in a timezone or city.",
+      "version": "1.1.2",
+      "type": "command"
+    },
+    {
+      "path": "plugins/qr",
+      "name": "QR Code",
+      "description": "Generate a QR code for a URL.",
+      "version": "1.1.2",
+      "type": "command"
+    },
+    {
+      "path": "plugins/password",
+      "name": "Password",
+      "description": "Generate a random password.",
+      "version": "1.1.2",
+      "type": "command"
+    },
+    {
+      "path": "plugins/search-history",
+      "name": "Search history",
+      "description": "Stores search history in data/history.json with timestamps; !history shows a paginated, deletable list.",
+      "version": "1.2.1",
+      "type": "command"
+    },
+    {
+      "path": "plugins/tmdb-slot",
+      "name": "TMDb",
+      "description": "Shows movie/TV show details above search results.",
+      "version": "1.4.1",
+      "type": "slot"
+    },
+    {
+      "path": "plugins/math-slot",
+      "name": "Math",
+      "description": "Evaluates math expressions and shows the result above search results.",
+      "version": "1.1.2",
+      "type": "slot"
+    },
+    {
+      "path": "plugins/jellyfin",
+      "name": "Jellyfin",
+      "description": "Search your Jellyfin media library.",
+      "version": "1.4.1",
+      "type": "command"
+    },
+    {
+      "path": "plugins/romm",
+      "name": "RomM",
+      "description": "Search your RomM game library.",
+      "version": "1.0.1",
+      "type": "command"
+    },
+    {
+      "path": "plugins/colors",
+      "name": "Colors",
+      "description": "Generate a five-color palette. Space to shuffle, click to lock.",
+      "version": "1.0.1",
+      "type": "command"
+    },
+    {
+      "path": "plugins/meilisearch",
+      "name": "Meilisearch",
+      "description": "Search across your Meilisearch indexes.",
+      "version": "1.2.1",
+      "type": "command"
+    },
+    {
+      "path": "plugins/rss",
+      "name": "Home RSS Feeds",
+      "description": "Shows RSS feed items above search results.",
+      "version": "1.5.1",
+      "type": "slot"
+    },
+    {
+      "path": "plugins/github-slot",
+      "name": "GitHub",
+      "description": "When search results include GitHub repos or users, shows styled info above results.",
+      "version": "1.1.1",
+      "type": "slot"
+    },
+    {
+      "path": "plugins/apps-pocket",
+      "name": "Apps pocket",
+      "description": "Adds a Google-style apps grid next to the settings icon. Apps are customised via the Configure button as a JSON list.",
+      "version": "1.2.5",
+      "type": "command",
+      "minDegoogVersion": "0.17.0"
+    },
+    {
+      "path": "plugins/spell-check",
+      "name": "Spell Check",
+      "description": "Intercepts search queries and corrects spelling using Yandex Speller. No API key required.",
+      "version": "1.1.1",
+      "type": "interceptor"
+    },
+    {
+      "path": "plugins/ddg-bang",
+      "name": "DuckDuckGo bang redirect",
+      "description": "Type !! followed by any ddg bang command to trigger them directly from degoog. This WILL route through duckduckgo. Find all available commands here: https://duckduckgo.com/bangs",
+      "version": "1.2.1",
+      "type": "command"
+    },
+    {
+      "path": "plugins/file-tab",
+      "name": "File tab results",
+      "description": "Adds a Files tab to search results that finds downloadable files via file-type engines.",
+      "version": "1.1.2",
+      "type": "search-result-tab",
+      "dependencies": [
+        "https://github.com/fccview/fccview-degoog-extensions/engines/internet-archive"
+      ]
+    }
+  ],
+  "themes": [
+    {
+      "path": "themes/degoog-docs",
+      "name": "Degoog Docs",
+      "description": "A theme that matches the degoog documentation site.",
+      "version": "1.0.2"
+    },
+    {
+      "path": "themes/zen",
+      "name": "Zen",
+      "description": "A minimalist calming theme.",
+      "version": "2.0.1"
+    },
+    {
+      "path": "themes/catpuccin",
+      "name": "Catppuccin",
+      "description": "Mocha (blue), Latte (light blue), Rose (red/coral), Peach (orange/amber).",
+      "version": "1.1.1"
+    },
+    {
+      "path": "themes/pokemon",
+      "name": "Pokemon",
+      "description": "Starter-inspired: Pikachu (yellow), Bulbasaur (green), Charmander (orange), Squirtle (blue).",
+      "version": "1.2.1"
+    }
+  ],
+  "transports": [
+    {
+      "path": "transports/flaresolverr",
+      "name": "FlareSolverr",
+      "description": "Bypass Cloudflare challenges via a FlareSolverr instance. Once configured, engines can select flaresolverr as their outgoing transport.",
+      "version": "1.1.1"
+    },
+    {
+      "path": "transports/browserless",
+      "name": "Browserless",
+      "description": "Fetches pages through a self-hosted Browserless instance (or any compatible headless browser service). Renders JavaScript before returning HTML — useful for engines like Google Images that block standard HTTP requests. Compatible with browserless/chromium, CloakBrowser wrappers, and any service exposing POST /content.",
+      "version": "1.1.1"
+    },
+    {
+      "path": "transports/cloakbrowser",
+      "name": "CloakBrowser",
+      "description": "Fetches pages through a self-hosted CloakBrowser service (stealth Chromium). Patches bot-detection signals at the C++ level — navigator.webdriver, canvas, CDP leaks — bypassing Google and Cloudflare. See homelab/cloakbrowser for the Docker service.",
+      "version": "1.0.1"
+    },
+    {
+      "path": "transports/camoufox",
+      "name": "Camoufox",
+      "description": "Fetches pages through a self-hosted Camoufox service (stealth Firefox). Patches bot-detection signals at the C++ level, bypassing Google and Cloudflare. See homelab/camoufox for the Docker service.",
+      "version": "1.0.1"
+    },
+    {
+      "path": "transports/degoog-fplay",
+      "name": "degoog-4play",
+      "description": "Uses a browser extension to harvest a genuine session for each target host, then passes those cookies to curl-impersonate for outgoing requests.",
+      "version": "1.1.1"
+    }
+  ],
+  "engines": [
+    {
+      "path": "engines/ecosia",
+      "name": "Ecosia",
+      "description": "Adds the Ecosia engine to degoog. Note: Ecosia may return no results when Cloudflare blocks server-side requests; use another engine if that happens.",
+      "version": "1.0.5"
+    },
+    {
+      "path": "engines/startpage",
+      "name": "Startpage",
+      "description": "Adds the Startpage engine to degoog. You can enable Anonymous View so result links open via Startpage's proxy.",
+      "version": "1.1.5"
+    },
+    {
+      "path": "engines/internet-archive",
+      "name": "Internet Archive",
+      "description": "Adds the Internet Archive as a file-type engine. Searches archive.org for downloadable files, books, software, media, and more.",
+      "version": "1.0.4"
+    },
+    {
+      "path": "engines/lemmy",
+      "name": "Lemmy World",
+      "description": "Adds the Lemmy engine to degoog. Searches Lemmy for posts, comments, and communities.",
+      "version": "1.0.2"
+    },
+    {
+      "path": "engines/brave-api-search",
+      "name": "Brave API Search",
+      "description": "Adds the Brave API Search engine to degoog. Searches Brave.com for search results via the api instead of scraping the frontend.",
+      "version": "1.0.2"
+    },
+    {
+      "path": "engines/duckduckgo-images",
+      "name": "DuckDuckGo Images",
+      "description": "Adds the DuckDuckGo images search engine to degoog, adding an extra ~70 images per page to the image results.",
+      "version": "1.1.1"
+    },
+    {
+      "path": "engines/openverse",
+      "name": "Openverse",
+      "description": "Adds the Openverse image engine to degoog. Searches CC-licensed images aggregated from Flickr, Wikimedia and museum collections via the public Openverse API. No API key required.",
+      "version": "1.1.1"
+    },
+    {
+      "path": "engines/wikimedia-commons",
+      "name": "Wikimedia Commons",
+      "description": "Adds the Wikimedia Commons image engine to degoog. Searches the Wikimedia Commons media archive via the MediaWiki API. No API key required.",
+      "version": "1.1.1"
+    },
+    {
+      "path": "engines/nasa-images",
+      "name": "NASA Images",
+      "description": "Adds the NASA image engine to degoog. Searches the NASA Image and Video Library. No API key required.",
+      "version": "1.0.2"
+    },
+    {
+      "path": "engines/hacker-news",
+      "name": "Hacker News",
+      "description": "Adds the Hacker News engine to degoog. Searches Hacker News stories via the Algolia API. No API key required.",
+      "version": "1.0.2"
+    },
+    {
+      "path": "engines/duckduckgo-news",
+      "name": "DuckDuckGo News",
+      "description": "Adds the DuckDuckGo News engine to degoog. No API key required.",
+      "version": "1.0.2"
+    },
+    {
+      "path": "engines/the-guardian",
+      "name": "The Guardian",
+      "description": "Adds The Guardian as a news engine to degoog via the Guardian Open Platform API. Requires a free API key from open-platform.theguardian.com.",
+      "version": "1.0.2"
+    }
+  ],
+  "autocomplete": [
+    {
+      "path": "autocomplete/brave",
+      "name": "Brave",
+      "description": "Autocomplete suggestions from Brave Search. Works without an API key; optionally add your Brave Search API key for authenticated requests.",
+      "version": "1.0.1"
+    },
+    {
+      "path": "autocomplete/bing",
+      "name": "Bing",
+      "description": "Autocomplete suggestions from Bing. No API key required.",
+      "version": "1.0.1"
+    },
+    {
+      "path": "autocomplete/yahoo",
+      "name": "Yahoo",
+      "description": "Autocomplete suggestions from Yahoo Search. No API key required.",
+      "version": "1.0.1"
+    }
+  ]
+}

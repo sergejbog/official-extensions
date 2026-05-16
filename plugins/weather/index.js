@@ -52,6 +52,7 @@ const _render = (data) => {
 };
 
 export default {
+  isClientExposed: false,
   name: "Weather",
   description: "Shows weather information using Open-Meteo",
   trigger: "weather",

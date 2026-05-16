@@ -1,4 +1,5 @@
 export default class FlareSolverrTransport {
+  isClientExposed = false;
   name = "flaresolverr";
   displayName = "FlareSolverr";
   description =

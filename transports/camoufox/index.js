@@ -49,6 +49,7 @@ const _originOf = (url) => {
 };
 
 export default class CamoufoxTransport {
+  isClientExposed = false;
   name = "camoufox";
   displayName = "Camoufox";
   description =

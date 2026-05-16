@@ -143,6 +143,7 @@ function renderCard(item, index, thumbSrc) {
 }
 
 export default {
+  isClientExposed: false,
   name: "RomM",
   description: "Search your RomM game library",
   trigger: "romm",

@@ -29,6 +29,7 @@ const redirectGoHandler = async (req) => {
 };
 
 export default {
+  isClientExposed: false,
   name: "DuckDuckGo !bangs",
   description:
     "Type !! followed by any ddg bang command to trigger them directly from degoog. This WILL route through duckduckgo.",

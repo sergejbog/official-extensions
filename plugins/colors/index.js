@@ -25,6 +25,7 @@ const _encodeSeeds = (args) => {
 };
 
 export default {
+  isClientExposed: false,
   name: "Colors",
   description: "Generate a five-color palette. Space to shuffle, click to lock.",
   trigger: "colors",

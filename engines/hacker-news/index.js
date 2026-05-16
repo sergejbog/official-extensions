@@ -28,6 +28,7 @@ const _timeFilterToRange = (timeFilter, dateFrom, dateTo) => {
 };
 
 export default class HackerNewsEngine {
+  isClientExposed = false;
   name = "Hacker News";
   bangShortcut = "hn";
 

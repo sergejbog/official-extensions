@@ -1,4 +1,5 @@
 export default class BraveAutocompleteProvider {
+  isClientExposed = false;
   name = "Brave";
   description = "Autocomplete suggestions from Brave Search.";
 

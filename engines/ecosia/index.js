@@ -32,6 +32,7 @@ const _getBrowserHeaders = () => {
 }
 
 export default class EcosiaEngine {
+  isClientExposed = false;
   name = "Ecosia";
   bangShortcut = "ecosia";
 

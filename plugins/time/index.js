@@ -47,6 +47,7 @@ const _resolveTimeZone = (input) => {
 };
 
 export default {
+  isClientExposed: false,
   name: "Time",
   description: "Show current time in a timezone or city.",
   trigger: "time",

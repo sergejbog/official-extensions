@@ -11,6 +11,7 @@ const _pickThumbnail = (links) => {
 };
 
 export default class NasaImagesEngine {
+  isClientExposed = false;
   name = "NASA Images";
   bangShortcut = "nasa";
 

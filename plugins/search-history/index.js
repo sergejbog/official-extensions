@@ -51,6 +51,7 @@ const _formatTimestamp = (ts) => {
 }
 
 export default {
+  isClientExposed: false,
   name: "Search history",
   description: "Stores search history in data/history.json with timestamps; !history shows a paginated, deletable list.",
   trigger: "history",

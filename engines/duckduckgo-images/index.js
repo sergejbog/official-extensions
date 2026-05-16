@@ -72,6 +72,7 @@ const _mkFilters = (imageFilter) => {
 };
 
 export default class DuckDuckGoImagesEngine {
+  isClientExposed = false;
   name = "DuckDuckGo Images";
   bangShortcut = "ddgi";
   safeSearch = "off";

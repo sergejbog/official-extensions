@@ -74,6 +74,7 @@ const _stripStartpageProxy = (url) => {
 };
 
 export default class StartpageEngine {
+  isClientExposed = false;
   name = "Startpage";
   bangShortcut = "sp";
 

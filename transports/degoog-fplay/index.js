@@ -217,6 +217,7 @@ async function _curlFetch(
 _startServer(3031, "");
 
 export default class FplayTransport {
+  isClientExposed = false;
   name = "degoog-4play";
   displayName = "degoog-4play (Requires browser extension)";
   description =

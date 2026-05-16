@@ -9,6 +9,7 @@ const _formatBytes = (bytes) => {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + " " + sizes[i];
 };
 export default class InternetArchiveEngine {
+  isClientExposed = true;
   name = "Internet Archive";
   bangShortcut = "ia";
 

@@ -35,6 +35,7 @@ const _randomPassword = (length) => {
 };
 
 export default {
+  isClientExposed: false,
   name: "Password",
   description: "Generate a random password.",
   trigger: "password",
