@@ -14,6 +14,8 @@ Sessions are cached for **5 hours** before the extension may be asked to refresh
 2. The extension waits for the load to finish, reads cookies with `chrome.cookies`, then closes the tab.
 3. curl-impersonate performs the real HTTP request using those cookies (and its own TLS/UA profile unless you change transport settings below).
 
+**Client exposure:** Unlike other transports, 4play causes the user’s browser to contact external sites directly during session warmup. Search result thumbnails from engines still go through Degoog’s `/api/proxy/image` on the client; this transport does not use that proxy for its own fetches.
+
 ## Requirements
 
 - A browser with **WebExtensions** support and the **Fplay extension** loaded and connected to your Degoog instance.

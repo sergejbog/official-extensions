@@ -1,5 +1,6 @@
 let apiKey = "";
 let template = "";
+let _signProxy = null;
 
 const IMAGE_BASE = "https://image.tmdb.org/t/p";
 const POSTER_SIZE = "w185";
@@ -73,7 +74,8 @@ const _imgUrl = (path, size) => {
 
   if (!p) return "";
 
-  return `${IMAGE_BASE}/${size}${p.startsWith("/") ? p : "/" + p}`;
+  const url = `${IMAGE_BASE}/${size}${p.startsWith("/") ? p : "/" + p}`;
+  return _signProxy ? _signProxy(url) : url;
 };
 
 const _render = (data) => {
@@ -229,7 +231,7 @@ const _wrapTabs = (tabs) => {
 };
 
 export const slot = {
-  isClientExposed: true,
+  isClientExposed: false,
   id: "tmdb",
   name: "TMDb",
   position: "above-results",
@@ -250,6 +252,7 @@ export const slot = {
 
   init(ctx) {
     template = ctx.template;
+    if (ctx.signProxyUrl) _signProxy = ctx.signProxyUrl;
   },
 
   configure(settings) {
