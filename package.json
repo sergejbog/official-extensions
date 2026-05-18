@@ -96,6 +96,13 @@
       "type": "slot"
     },
     {
+      "path": "plugins/freshrss",
+      "name": "FreshRSS",
+      "description": "Integrates a self-hosted FreshRSS instance. Works the same way as the home rss plugin but uses the FreshRSS API instead.",
+      "version": "1.0.0",
+      "type": "slot"
+    },
+    {
       "path": "plugins/github-slot",
       "name": "GitHub",
       "description": "When search results include GitHub repos or users, shows styled info above results.",

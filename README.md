@@ -154,6 +154,17 @@ Shows RSS feed items above search results. Slot plugin: configured feeds are dis
 
 </details>
 
+### FreshRSS
+
+Integrates a self-hosted FreshRSS instance. Streams your aggregated feed on the home page and lets you search it as a bang command (`!freshrss` / `!frss`). Supports category filtering and unread-only mode. Requires the API to be enabled in your FreshRSS profile — see the plugin README for setup steps.
+
+<details>
+<summary>Screenshot</summary>
+
+![FreshRSS](plugins/freshrss/screenshots/1.png)
+
+</details>
+
 ### GitHub
 
 When search results include GitHub repos or users, shows styled info above results. Slot plugin that renders GitHub cards (repo stats, user info) in a slot.
