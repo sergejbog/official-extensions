@@ -310,7 +310,7 @@ Fetches pages through a self-hosted CloakBrowser service (stealth Chromium). Pat
 
 ### Camoufox
 
-Fetches pages through a self-hosted Camoufox service (stealth Firefox). Patches bot-detection signals at the C++ level, bypassing Google and Cloudflare. See Korosys/camoufox-degoog for the Docker service.
+Fetches pages through a self-hosted Camoufox service (stealth Firefox). Patches bot-detection signals at the C++ level, bypassing Google and Cloudflare. See [Korosys/camoufox-degoog](https://github.com/Korosys/camoufox-degoog) for the Docker service.
 
 <details>
 <summary>Screenshot</summary>
