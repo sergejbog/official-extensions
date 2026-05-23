@@ -1,7 +1,8 @@
 import { basename } from "node:path";
 
 const CORRECTION_TTL_MS = 15_000;
-const YANDEX_SPELLER = "https://speller.yandex.net/services/spellservice.json/checkText";
+const YANDEX_SPELLER =
+  "https://speller.yandex.net/services/spellservice.json/checkText";
 
 const _corrections = new Map();
 const _skipOnce = new Set();
@@ -13,6 +14,26 @@ let _tpl = "";
 
 const BANG = /^!/;
 const MIN_WORDS = 2;
+const CACHE_NAMESPACE = "ext:spell-check:corrections";
+const CACHE_TTL_MS = 120_000;
+
+const _resolveCache = (ctx) => {
+  if (typeof ctx?.useCache === "function") {
+    return ctx.useCache(CACHE_NAMESPACE, CACHE_TTL_MS);
+  }
+  if (typeof ctx?.createCache === "function") {
+    const sync = ctx.createCache(CACHE_TTL_MS);
+    return {
+      get: async (k) => sync.get(k),
+      set: async (k, v) => sync.set(k, v),
+      delete: async (k) => {
+        if (typeof sync.delete === "function") sync.delete(k);
+      },
+      clear: async () => sync.clear(),
+    };
+  }
+  return null;
+};
 
 const _esc = (s) =>
   String(s)
@@ -58,8 +79,8 @@ export const interceptor = {
     _lang = _toLang(settings.language || "en");
   },
 
-  init(ctx) {
-    _cache = ctx.createCache(120_000);
+  async init(ctx) {
+    _cache = _resolveCache(ctx);
     _folderName = basename(ctx.dir);
   },
 
@@ -74,7 +95,7 @@ export const interceptor = {
     }
 
     const cacheKey = `${_lang}:${q}`;
-    const hit = _cache?.get(cacheKey);
+    const hit = _cache ? await _cache.get(cacheKey) : null;
     if (hit) {
       if (hit.query !== q)
         _corrections.set(q, {
@@ -99,7 +120,7 @@ export const interceptor = {
       if (corrected === q) return { query };
 
       const result = { query: corrected };
-      _cache?.set(cacheKey, result);
+      if (_cache) await _cache.set(cacheKey, result);
       _corrections.set(q, {
         corrected,
         expiresAt: Date.now() + CORRECTION_TTL_MS,
@@ -136,14 +157,8 @@ export const slot = {
     const html = _tpl
       .replace(/\{\{corrected\}\}/g, _esc(corrected))
       .replace(/\{\{original\}\}/g, _esc(query))
-      .replace(
-        /\{\{search_url\}\}/g,
-        `/search?q=${encodeURIComponent(query)}`,
-      )
-      .replace(
-        /\{\{skip_endpoint\}\}/g,
-        `/api/plugin/${_folderName}/skip`,
-      );
+      .replace(/\{\{search_url\}\}/g, `/search?q=${encodeURIComponent(query)}`)
+      .replace(/\{\{skip_endpoint\}\}/g, `/api/plugin/${_folderName}/skip`);
 
     return { html };
   },

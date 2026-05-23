@@ -5,6 +5,15 @@
   "author": "fccview",
   "plugins": [
     {
+      "path": "plugins/ai-summary",
+      "name": "AI Summary",
+      "description": "AI-powered summary panel for search results. Supports OpenAI-compatible, Gemini, and Anthropic providers.",
+      "version": "1.0.0",
+      "type": "slot",
+      "minDegoogVersion": "1.0.0",
+      "legacyIds": ["ai-summary-slot"]
+    },
+    {
       "path": "plugins/weather",
       "name": "Weather",
       "description": "Shows weather information using Open-Meteo.",
@@ -120,9 +129,10 @@
     {
       "path": "plugins/spell-check",
       "name": "Spell Check",
-      "description": "Intercepts search queries and corrects spelling using Yandex Speller. No API key required.",
-      "version": "1.1.1",
-      "type": "interceptor"
+      "description": "Intercepts search queries and corrects spelling using Yandex Speller.",
+      "version": "1.2.0",
+      "type": "interceptor",
+      "minDegoogVersion": "0.19.0"
     },
     {
       "path": "plugins/ddg-bang",
@@ -208,6 +218,91 @@
     }
   ],
   "engines": [
+
+    {
+      "path": "engines/google",
+      "name": "Google",
+      "description": "Adds Google web search to degoog.",
+      "version": "1.0.0",
+      "legacyIds": ["google", "google-engine"]
+    },
+    {
+      "path": "engines/google-images",
+      "name": "Google Images",
+      "description": "Adds Google Images to degoog. Requires the 4play transport - install it from the Store tab, then add the browser extension.",
+      "version": "1.0.0",
+      "legacyIds": ["google-images", "google-images-engine"]
+    },
+    {
+      "path": "engines/google-videos",
+      "name": "Google Videos",
+      "description": "Adds Google Videos to degoog.",
+      "version": "1.0.0",
+      "legacyIds": ["google-videos", "google-videos-engine"]
+    },
+    {
+      "path": "engines/bing",
+      "name": "Bing",
+      "description": "Bing web search.",
+      "version": "1.0.0",
+      "legacyIds": ["bing", "bing-engine"]
+    },
+    {
+      "path": "engines/bing-images",
+      "name": "Bing Images",
+      "description": "Bing image search.",
+      "version": "1.0.0",
+      "legacyIds": ["bing-images", "bing-images-engine"]
+    },
+    {
+      "path": "engines/bing-videos",
+      "name": "Bing Videos",
+      "description": "Bing video search.",
+      "version": "1.0.0",
+      "legacyIds": ["bing-videos", "bing-videos-engine"]
+    },
+    {
+      "path": "engines/bing-news",
+      "name": "Bing News",
+      "description": "Bing news search.",
+      "version": "1.0.0",
+      "legacyIds": ["bing-news", "bing-news-engine"]
+    },
+    {
+      "path": "engines/brave",
+      "name": "Brave Search",
+      "description": "Brave web search (HTML scraping). For API access use Brave API Search.",
+      "version": "1.0.0",
+      "legacyIds": ["brave", "brave-engine"]
+    },
+    {
+      "path": "engines/brave-news",
+      "name": "Brave News",
+      "description": "Brave news search.",
+      "version": "1.0.0",
+      "legacyIds": ["brave-news", "brave-news-engine"]
+    },
+    {
+      "path": "engines/duckduckgo",
+      "name": "DuckDuckGo",
+      "description": "DuckDuckGo web search.",
+      "version": "1.0.0",
+      "legacyIds": ["duckduckgo", "duckduckgo-engine"]
+    },
+    {
+      "path": "engines/wikipedia",
+      "name": "Wikipedia",
+      "description": "Wikipedia search via the MediaWiki API.",
+      "version": "1.0.0",
+      "legacyIds": ["wikipedia", "wikipedia-engine"]
+    },
+    {
+      "path": "engines/reddit",
+      "name": "Reddit",
+      "description": "Reddit post search via the public JSON API.",
+      "version": "1.0.0",
+      "legacyIds": ["reddit", "reddit-engine"]
+    },
     {
       "path": "engines/ecosia",
       "name": "Ecosia",
@@ -247,31 +342,31 @@
     {
       "path": "engines/openverse",
       "name": "Openverse",
-      "description": "Adds the Openverse image engine to degoog. Searches CC-licensed images aggregated from Flickr, Wikimedia and museum collections via the public Openverse API. No API key required.",
+      "description": "Adds the Openverse image engine to degoog. Searches CC-licensed images aggregated from Flickr, Wikimedia and museum collections via the public Openverse API.",
       "version": "1.1.2"
     },
     {
       "path": "engines/wikimedia-commons",
       "name": "Wikimedia Commons",
-      "description": "Adds the Wikimedia Commons image engine to degoog. Searches the Wikimedia Commons media archive via the MediaWiki API. No API key required.",
+      "description": "Adds the Wikimedia Commons image engine to degoog. Searches the Wikimedia Commons media archive via the MediaWiki API.",
       "version": "1.1.2"
     },
     {
       "path": "engines/nasa-images",
       "name": "NASA Images",
-      "description": "Adds the NASA image engine to degoog. Searches the NASA Image and Video Library. No API key required.",
+      "description": "Adds the NASA image engine to degoog. Searches the NASA Image and Video Library.",
       "version": "1.0.3"
     },
     {
       "path": "engines/hacker-news",
       "name": "Hacker News",
-      "description": "Adds the Hacker News engine to degoog. Searches Hacker News stories via the Algolia API. No API key required.",
+      "description": "Adds the Hacker News engine to degoog. Searches Hacker News stories via the Algolia API.",
       "version": "1.0.3"
     },
     {
       "path": "engines/duckduckgo-news",
       "name": "DuckDuckGo News",
-      "description": "Adds the DuckDuckGo News engine to degoog. No API key required.",
+      "description": "Adds the DuckDuckGo News engine to degoog.",
       "version": "1.0.3"
     },
     {
@@ -283,6 +378,20 @@
   ],
   "autocomplete": [
     {
+      "path": "autocomplete/google",
+      "name": "Google",
+      "description": "Autocomplete suggestions from Google.",
+      "version": "1.0.0",
+      "legacyIds": ["autocomplete-builtin-google", "google"]
+    },
+    {
+      "path": "autocomplete/duckduckgo",
+      "name": "DuckDuckGo",
+      "description": "Autocomplete suggestions from DuckDuckGo.",
+      "version": "1.0.0",
+      "legacyIds": ["autocomplete-builtin-duckduckgo", "duckduckgo"]
+    },
+    {
       "path": "autocomplete/brave",
       "name": "Brave",
       "description": "Autocomplete suggestions from Brave Search. Works without an API key; optionally add your Brave Search API key for authenticated requests.",
@@ -291,13 +400,13 @@
     {
       "path": "autocomplete/bing",
       "name": "Bing",
-      "description": "Autocomplete suggestions from Bing. No API key required.",
+      "description": "Autocomplete suggestions from Bing.",
       "version": "1.0.1"
     },
     {
       "path": "autocomplete/yahoo",
       "name": "Yahoo",
-      "description": "Autocomplete suggestions from Yahoo Search. No API key required.",
+      "description": "Autocomplete suggestions from Yahoo Search.",
       "version": "1.0.1"
     }
   ]

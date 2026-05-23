@@ -50,7 +50,7 @@ export default class OpenverseEngine {
         },
       });
 
-      if (!response.ok) return [];
+      context?.sentinel?.(response, this.name);
 
       const data = await response.json();
       const items = data?.results ?? [];
@@ -67,7 +67,8 @@ export default class OpenverseEngine {
           imageUrl: item.url ?? item.thumbnail ?? "",
         }))
         .filter((r) => r.url && r.thumbnail);
-    } catch {
+    } catch (e) {
+      if (e?.name === "SentinelBreach") throw e;
       return [];
     }
   };

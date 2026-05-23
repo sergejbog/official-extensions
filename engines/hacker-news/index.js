@@ -52,7 +52,7 @@ export default class HackerNewsEngine {
       const response = await doFetch(`${API_BASE}/${endpoint}?${params.toString()}`, {
         headers: { Accept: "application/json" },
       });
-      if (!response.ok) return [];
+      context?.sentinel?.(response, this.name);
       const data = await response.json();
       const hits = data?.hits ?? [];
 
@@ -79,7 +79,8 @@ export default class HackerNewsEngine {
           };
         })
         .filter((r) => r.title && r.url);
-    } catch {
+    } catch (e) {
+      if (e?.name === "SentinelBreach") throw e;
       return [];
     }
   }

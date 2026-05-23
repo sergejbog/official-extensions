@@ -41,6 +41,7 @@ export default class InternetArchiveEngine {
         Accept: "application/json",
       },
     });
+    context?.sentinel?.(response, this.name);
 
     const data = await response.json();
     const docs = data?.response?.docs ?? [];

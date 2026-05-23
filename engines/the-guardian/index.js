@@ -93,7 +93,7 @@ export default class TheGuardianEngine {
       const response = await doFetch(`${API_URL}?${params.toString()}`, {
         headers: { Accept: "application/json" },
       });
-      if (!response.ok) return [];
+      context?.sentinel?.(response, this.name);
       const data = await response.json();
       const items = data?.response?.results ?? [];
 
@@ -106,7 +106,8 @@ export default class TheGuardianEngine {
           ...(item.fields?.thumbnail ? { thumbnail: item.fields.thumbnail } : {}),
         }))
         .filter((r) => r.title && r.url);
-    } catch {
+    } catch (e) {
+      if (e?.name === "SentinelBreach") throw e;
       return [];
     }
   }

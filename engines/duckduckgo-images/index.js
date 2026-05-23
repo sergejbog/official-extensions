@@ -116,6 +116,7 @@ export default class DuckDuckGoImagesEngine {
       `https://duckduckgo.com/?q=${encodeURIComponent(query)}&iax=images&ia=images`,
       { headers },
     );
+    context?.sentinel?.(initRes, this.name);
     const initHtml = await initRes.text();
     const vqd = _extractVqd(initHtml);
     if (!vqd) return [];
@@ -149,7 +150,7 @@ export default class DuckDuckGoImagesEngine {
       },
     );
 
-    if (!res.ok) return [];
+    context?.sentinel?.(res, this.name);
 
     const data = await res.json();
     const items = data?.results ?? [];
