@@ -11,7 +11,9 @@
       "version": "1.0.1",
       "type": "slot",
       "minDegoogVersion": "1.0.0",
-      "legacyIds": ["ai-summary-slot"]
+      "legacyIds": [
+        "ai-summary-slot"
+      ]
     },
     {
       "path": "plugins/weather",
@@ -147,16 +149,6 @@
       "description": "Wraps query-matching words in <strong> on result titles and snippets on every search page.",
       "version": "1.0.1",
       "type": "command"
-    },
-    {
-      "path": "plugins/file-tab",
-      "name": "File tab results",
-      "description": "Adds a Files tab to search results that finds downloadable files via file-type engines.",
-      "version": "1.1.2",
-      "type": "search-result-tab",
-      "dependencies": [
-        "https://github.com/fccview/fccview-degoog-extensions/engines/internet-archive"
-      ]
     }
   ],
   "themes": [
@@ -195,13 +187,13 @@
     {
       "path": "transports/browserless",
       "name": "Browserless",
-      "description": "Fetches pages through a self-hosted Browserless instance (or any compatible headless browser service). Renders JavaScript before returning HTML \u2014 useful for engines like Google Images that block standard HTTP requests. Compatible with browserless/chromium, CloakBrowser wrappers, and any service exposing POST /content.",
+      "description": "Fetches pages through a self-hosted Browserless instance (or any compatible headless browser service). Renders JavaScript before returning HTML — useful for engines like Google Images that block standard HTTP requests. Compatible with browserless/chromium, CloakBrowser wrappers, and any service exposing POST /content.",
       "version": "1.1.1"
     },
     {
       "path": "transports/cloakbrowser",
       "name": "CloakBrowser",
-      "description": "Fetches pages through a self-hosted CloakBrowser service (stealth Chromium). Patches bot-detection signals at the C++ level \u2014 navigator.webdriver, canvas, CDP leaks \u2014 bypassing Google and Cloudflare. See homelab/cloakbrowser for the Docker service.",
+      "description": "Fetches pages through a self-hosted CloakBrowser service (stealth Chromium). Patches bot-detection signals at the C++ level — navigator.webdriver, canvas, CDP leaks — bypassing Google and Cloudflare. See homelab/cloakbrowser for the Docker service.",
       "version": "1.0.1"
     },
     {
@@ -218,90 +210,125 @@
     }
   ],
   "engines": [
-
     {
       "path": "engines/google",
       "name": "Google",
       "description": "Adds Google web search to degoog.",
       "version": "1.0.0",
-      "legacyIds": ["google", "google-engine"]
+      "legacyIds": [
+        "google",
+        "google-engine"
+      ]
     },
     {
       "path": "engines/google-images",
       "name": "Google Images",
       "description": "Adds Google Images to degoog. Requires the 4play transport - install it from the Store tab, then add the browser extension.",
       "version": "1.0.0",
-      "legacyIds": ["google-images", "google-images-engine"]
+      "legacyIds": [
+        "google-images",
+        "google-images-engine"
+      ]
     },
     {
       "path": "engines/google-videos",
       "name": "Google Videos",
       "description": "Adds Google Videos to degoog.",
       "version": "1.0.0",
-      "legacyIds": ["google-videos", "google-videos-engine"]
+      "legacyIds": [
+        "google-videos",
+        "google-videos-engine"
+      ]
     },
     {
       "path": "engines/bing",
       "name": "Bing",
       "description": "Bing web search.",
       "version": "1.0.0",
-      "legacyIds": ["bing", "bing-engine"]
+      "legacyIds": [
+        "bing",
+        "bing-engine"
+      ]
     },
     {
       "path": "engines/bing-images",
       "name": "Bing Images",
       "description": "Bing image search.",
       "version": "1.0.0",
-      "legacyIds": ["bing-images", "bing-images-engine"]
+      "legacyIds": [
+        "bing-images",
+        "bing-images-engine"
+      ]
     },
     {
       "path": "engines/bing-videos",
       "name": "Bing Videos",
       "description": "Bing video search.",
       "version": "1.0.0",
-      "legacyIds": ["bing-videos", "bing-videos-engine"]
+      "legacyIds": [
+        "bing-videos",
+        "bing-videos-engine"
+      ]
     },
     {
       "path": "engines/bing-news",
       "name": "Bing News",
       "description": "Bing news search.",
       "version": "1.0.0",
-      "legacyIds": ["bing-news", "bing-news-engine"]
+      "legacyIds": [
+        "bing-news",
+        "bing-news-engine"
+      ]
     },
     {
       "path": "engines/brave",
       "name": "Brave Search",
       "description": "Brave web search (HTML scraping). For API access use Brave API Search.",
       "version": "1.0.0",
-      "legacyIds": ["brave", "brave-engine"]
+      "legacyIds": [
+        "brave",
+        "brave-engine"
+      ]
     },
     {
       "path": "engines/brave-news",
       "name": "Brave News",
       "description": "Brave news search.",
       "version": "1.0.0",
-      "legacyIds": ["brave-news", "brave-news-engine"]
+      "legacyIds": [
+        "brave-news",
+        "brave-news-engine"
+      ]
     },
     {
       "path": "engines/duckduckgo",
       "name": "DuckDuckGo",
       "description": "DuckDuckGo web search.",
       "version": "1.0.0",
-      "legacyIds": ["duckduckgo", "duckduckgo-engine"]
+      "legacyIds": [
+        "duckduckgo",
+        "duckduckgo-engine"
+      ]
     },
     {
       "path": "engines/wikipedia",
       "name": "Wikipedia",
       "description": "Wikipedia search via the MediaWiki API.",
       "version": "1.0.0",
-      "legacyIds": ["wikipedia", "wikipedia-engine"]
+      "legacyIds": [
+        "wikipedia",
+        "wikipedia-engine"
+      ]
     },
     {
       "path": "engines/reddit",
       "name": "Reddit",
       "description": "Reddit post search via the public JSON API.",
       "version": "1.0.0",
-      "legacyIds": ["reddit", "reddit-engine"]
+      "legacyIds": [
+        "reddit",
+        "reddit-engine"
+      ]
     },
     {
       "path": "engines/ecosia",
@@ -382,14 +409,20 @@
       "name": "Google",
       "description": "Autocomplete suggestions from Google.",
       "version": "1.0.0",
-      "legacyIds": ["autocomplete-builtin-google", "google"]
+      "legacyIds": [
+        "autocomplete-builtin-google",
+        "google"
+      ]
     },
     {
       "path": "autocomplete/duckduckgo",
       "name": "DuckDuckGo",
       "description": "Autocomplete suggestions from DuckDuckGo.",
       "version": "1.0.0",
-      "legacyIds": ["autocomplete-builtin-duckduckgo", "duckduckgo"]
+      "legacyIds": [
+        "autocomplete-builtin-duckduckgo",
+        "duckduckgo"
+      ]
     },
     {
       "path": "autocomplete/brave",
