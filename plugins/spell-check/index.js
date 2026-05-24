@@ -1,5 +1,3 @@
-import { basename } from "node:path";
-
 const CORRECTION_TTL_MS = 15_000;
 const YANDEX_SPELLER =
   "https://speller.yandex.net/services/spellservice.json/checkText";
@@ -9,7 +7,7 @@ const _skipOnce = new Set();
 
 let _cache = null;
 let _lang = "en";
-let _folderName = "spell-check";
+let _apiBase = "/api/plugin/spell-check";
 let _tpl = "";
 
 const BANG = /^!/;
@@ -81,7 +79,7 @@ export const interceptor = {
 
   async init(ctx) {
     _cache = _resolveCache(ctx);
-    _folderName = basename(ctx.dir);
+    _apiBase = ctx.apiBase;
   },
 
   async intercept(query, context) {
@@ -141,7 +139,7 @@ export const slot = {
 
   init(ctx) {
     _tpl = ctx.template;
-    _folderName = basename(ctx.dir);
+    _apiBase = ctx.apiBase;
   },
 
   trigger(query) {
@@ -158,7 +156,7 @@ export const slot = {
       .replace(/\{\{corrected\}\}/g, _esc(corrected))
       .replace(/\{\{original\}\}/g, _esc(query))
       .replace(/\{\{search_url\}\}/g, `/search?q=${encodeURIComponent(query)}`)
-      .replace(/\{\{skip_endpoint\}\}/g, `/api/plugin/${_folderName}/skip`);
+      .replace(/\{\{skip_endpoint\}\}/g, `${_apiBase}/skip`);
 
     return { html };
   },

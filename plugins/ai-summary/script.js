@@ -2,8 +2,9 @@
   const glanceEl = document.getElementById("at-a-glance");
   if (!glanceEl) return;
 
-  const SUMMARY_URL = "/api/plugin/fccview-degoog-extensions-ai-summary/stream";
-  const CHAT_URL = "/api/plugin/fccview-degoog-extensions-ai-summary/chat";
+  const API_BASE = `/api/plugin/${__PLUGIN_ID__}`;
+  const SUMMARY_URL = `${API_BASE}/stream`;
+  const CHAT_URL = `${API_BASE}/chat`;
   const MAX_SOURCES = 6;
   const FAVICON_BASE = "https://www.google.com/s2/favicons";
 

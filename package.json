@@ -8,7 +8,7 @@
       "path": "plugins/ai-summary",
       "name": "AI Summary",
       "description": "AI-powered summary panel for search results. Supports OpenAI-compatible, Gemini, and Anthropic providers.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "type": "slot",
       "minDegoogVersion": "1.0.0",
       "legacyIds": ["ai-summary-slot"]
@@ -38,7 +38,7 @@
       "path": "plugins/qr",
       "name": "QR Code",
       "description": "Generate a QR code for a URL.",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "type": "command"
     },
     {
@@ -52,7 +52,7 @@
       "path": "plugins/search-history",
       "name": "Search history",
       "description": "Stores search history in data/history.json with timestamps; !history shows a paginated, deletable list.",
-      "version": "1.2.1",
+      "version": "1.2.2",
       "type": "command"
     },
     {
@@ -73,14 +73,14 @@
       "path": "plugins/jellyfin",
       "name": "Jellyfin",
       "description": "Search your Jellyfin media library.",
-      "version": "1.4.1",
+      "version": "1.4.2",
       "type": "command"
     },
     {
       "path": "plugins/romm",
       "name": "RomM",
       "description": "Search your RomM game library.",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "type": "command"
     },
     {
@@ -101,14 +101,14 @@
       "path": "plugins/rss",
       "name": "Home RSS Feeds",
       "description": "Shows RSS feed items above search results.",
-      "version": "1.5.2",
+      "version": "1.5.3",
       "type": "slot"
     },
     {
       "path": "plugins/freshrss",
       "name": "FreshRSS",
       "description": "Integrates a self-hosted FreshRSS instance. Works the same way as the home rss plugin but uses the FreshRSS API instead.",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "type": "slot"
     },
     {
@@ -130,7 +130,7 @@
       "path": "plugins/spell-check",
       "name": "Spell Check",
       "description": "Intercepts search queries and corrects spelling using Yandex Speller.",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "type": "interceptor",
       "minDegoogVersion": "0.19.0"
     },
@@ -138,7 +138,7 @@
       "path": "plugins/ddg-bang",
       "name": "DuckDuckGo bang redirect",
       "description": "Type !! followed by any ddg bang command to trigger them directly from degoog. This WILL route through duckduckgo. Find all available commands here: https://duckduckgo.com/bangs",
-      "version": "1.2.1",
+      "version": "1.2.2",
       "type": "command"
     },
     {
