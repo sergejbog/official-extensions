@@ -10,7 +10,6 @@
       "description": "AI-powered summary panel for search results. Supports OpenAI-compatible, Gemini, and Anthropic providers.",
       "version": "1.0.1",
       "type": "slot",
-      "minDegoogVersion": "1.0.0",
       "legacyIds": [
         "ai-summary-slot"
       ]
