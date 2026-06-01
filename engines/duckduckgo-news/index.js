@@ -75,6 +75,7 @@ export default class DuckDuckGoNewsEngine {
       `https://duckduckgo.com/?q=${encodeURIComponent(query)}&iar=news&ia=news`,
       { headers },
     );
+    context?.sentinel?.(initRes, this.name);
     const initHtml = await initRes.text();
     const vqd = _extractVqd(initHtml);
     if (!vqd) return [];
@@ -103,7 +104,7 @@ export default class DuckDuckGoNewsEngine {
         "X-Requested-With": "XMLHttpRequest",
       },
     });
-    if (!res.ok) return [];
+    context?.sentinel?.(res, this.name);
     const data = await res.json();
     const items = data?.results ?? [];
 

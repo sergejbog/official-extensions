@@ -1,0 +1,143 @@
+.glance-ai-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.glance-ai-badge {
+  display: inline-block;
+  font-size: 0.6875rem;
+  color: var(--text-secondary);
+  background: var(--bg-hover);
+  border-radius: 0.25rem;
+  padding: 2px 7px;
+}
+
+.glance-ai-dive {
+  border: none;
+  background: none;
+  color: var(--text-link);
+  font-size: 0.6875rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.glance-ai-dive:hover {
+  text-decoration: underline;
+}
+
+.glance-ai-reply {
+  margin-top: 0.75rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+  border-radius: 0.375rem;
+  clear: both;
+}
+
+.glance-ai-user {
+  color: var(--text-secondary);
+  background: var(--bg-hover);
+  width: auto;
+  display: inline-block;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.glance-ai-typing {
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+}
+
+.glance-ai-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+}
+
+.glance-ai-skeleton .skeleton-line--snippet {
+  width: 100%;
+}
+
+.glance-ai-skeleton .skeleton-line--snippet-short {
+  width: 55%;
+}
+
+.glance-ai-writing {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0.25rem 0;
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+}
+
+.glance-ai-writing span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.4;
+  animation: glance-ai-pulse 1.2s ease-in-out infinite;
+}
+
+.glance-ai-writing span:nth-child(2) { animation-delay: 0.2s; }
+.glance-ai-writing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes glance-ai-pulse {
+  0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+  40% { opacity: 1; transform: scale(1); }
+}
+
+.glance-ai-thinking-label {
+  font-size: 0.6875rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  opacity: 0.7;
+}
+
+.glance-ai-thinking-stream {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  opacity: 0.75;
+  white-space: pre-wrap;
+  max-height: 12em;
+  overflow-y: auto;
+  border-left: 2px solid var(--text-secondary);
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.glance-ai-cite {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  vertical-align: baseline;
+  margin: 0 2px;
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.glance-ai-cite:hover {
+  text-decoration: none;
+  background: var(--bg-hover);
+}
+
+.glance-ai-cite .glance-ai-cite-favicon {
+  border-radius: 2px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.glance-ai-cite .glance-ai-cite-host {
+  color: var(--text-secondary);
+  font-size: 0.6875rem;
+}

@@ -45,8 +45,12 @@ export default class EcosiaEngine {
       "Accept-Language": context?.buildAcceptLanguage?.() ?? "en,en-US;q=0.9",
     };
     const response = await doFetch(url, { headers });
+    context?.sentinel?.(response, this.name);
     const html = await response.text();
     if (html.includes(CLOUDFLARE_CHALLENGE_MARKER)) {
+      if (context?.engineError) {
+        throw context.engineError("captcha", `${this.name} returned a Cloudflare challenge`, { engine: this.name });
+      }
       throw new Error(
         "Ecosia returned a Cloudflare challenge page; server-side requests are often blocked. Try another engine or use Ecosia in your browser.",
       );

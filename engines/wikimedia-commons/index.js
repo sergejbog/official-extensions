@@ -68,7 +68,7 @@ export default class WikimediaCommonsEngine {
         },
       });
 
-      if (!response.ok) return [];
+      context?.sentinel?.(response, this.name);
 
       const data = await response.json();
       const pages = data?.query?.pages;
@@ -97,7 +97,8 @@ export default class WikimediaCommonsEngine {
           };
         })
         .filter((r) => r && r.thumbnail && r.url);
-    } catch {
+    } catch (e) {
+      if (e?.name === "SentinelBreach") throw e;
       return [];
     }
   };

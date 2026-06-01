@@ -67,7 +67,7 @@ const _stripStartpageProxy = (url) => {
       const dest = u.searchParams.get("url");
       if (dest) return dest;
     }
-  } catch {}
+  } catch { }
   return url;
 };
 
@@ -140,6 +140,7 @@ export default class StartpageEngine {
       redirect: "follow",
       method: "GET",
     });
+    context?.sentinel?.(response, this.name);
 
     const html = await response.text();
     const jsonStr = _extractSerpJson(html);
@@ -148,7 +149,8 @@ export default class StartpageEngine {
     let data;
     try {
       data = JSON.parse(jsonStr);
-    } catch {
+    } catch (e) {
+      if (e?.name === "SentinelBreach") throw e;
       return [];
     }
 

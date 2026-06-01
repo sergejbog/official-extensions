@@ -31,7 +31,7 @@ export default class NasaImagesEngine {
         },
       });
 
-      if (!response.ok) return [];
+      context?.sentinel?.(response, this.name);
 
       const data = await response.json();
       const items = data?.collection?.items ?? [];
@@ -53,7 +53,8 @@ export default class NasaImagesEngine {
           };
         })
         .filter((r) => r && r.thumbnail && r.url);
-    } catch {
+    } catch (e) {
+      if (e?.name === "SentinelBreach") throw e;
       return [];
     }
   };

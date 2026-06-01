@@ -1,4 +1,4 @@
-const HISTORY_API = "/api/plugin/search-history";
+const HISTORY_API = `/api/plugin/${__PLUGIN_ID__}`;
 const HISTORY_LIST_URL = `${HISTORY_API}/list?limit=10`;
 
 const CLOCK_ICON =
