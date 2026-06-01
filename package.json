@@ -10,6 +10,7 @@
       "description": "AI-powered summary panel for search results. Supports OpenAI-compatible, Gemini, and Anthropic providers.",
       "version": "1.0.1",
       "type": "slot",
+      "minDegoogVersion": "0.19.0",
       "legacyIds": [
         "ai-summary-slot"
       ]
@@ -73,6 +74,7 @@
     {
       "path": "plugins/jellyfin",
       "name": "Jellyfin",
+      "minDegoogVersion": "0.19.0",
       "description": "Search your Jellyfin media library.",
       "version": "1.4.2",
       "type": "command"
@@ -214,6 +216,7 @@
       "name": "Google",
       "description": "Adds Google web search to degoog.",
       "version": "1.0.1",
+      "minDegoogVersion": "0.19.0",
       "legacyIds": [
         "google",
         "google-engine"
@@ -224,6 +227,7 @@
       "name": "Google Images",
       "description": "Adds Google Images to degoog. Requires the 4play transport - install it from the Store tab, then add the browser extension.",
       "version": "1.0.0",
+      "minDegoogVersion": "0.19.0",
       "legacyIds": [
         "google-images",
         "google-images-engine"
@@ -234,6 +238,7 @@
       "name": "Google Videos",
       "description": "Adds Google Videos to degoog.",
       "version": "1.0.0",
+      "minDegoogVersion": "0.19.0",
       "legacyIds": [
         "google-videos",
         "google-videos-engine"
@@ -244,6 +249,7 @@
       "name": "Bing",
       "description": "Bing web search.",
       "version": "1.0.0",
+      "minDegoogVersion": "0.19.0",
       "legacyIds": [
         "bing",
         "bing-engine"
@@ -254,6 +260,7 @@
       "name": "Bing Images",
       "description": "Bing image search.",
       "version": "1.0.0",
+      "minDegoogVersion": "0.19.0",
       "legacyIds": [
         "bing-images",
         "bing-images-engine"
@@ -264,6 +271,7 @@
       "name": "Bing Videos",
       "description": "Bing video search.",
       "version": "1.0.0",
+      "minDegoogVersion": "0.19.0",
       "legacyIds": [
         "bing-videos",
         "bing-videos-engine"
@@ -274,6 +282,7 @@
       "name": "Bing News",
       "description": "Bing news search.",
       "version": "1.0.0",
+      "minDegoogVersion": "0.19.0",
       "legacyIds": [
         "bing-news",
         "bing-news-engine"
@@ -284,6 +293,7 @@
       "name": "Brave Search",
       "description": "Brave web search (HTML scraping). For API access use Brave API Search.",
       "version": "1.0.0",
+      "minDegoogVersion": "0.19.0",
       "legacyIds": [
         "brave",
         "brave-engine"
@@ -294,6 +304,7 @@
       "name": "Brave News",
       "description": "Brave news search.",
       "version": "1.0.0",
+      "minDegoogVersion": "0.19.0",
       "legacyIds": [
         "brave-news",
         "brave-news-engine"
@@ -304,6 +315,7 @@
       "name": "DuckDuckGo",
       "description": "DuckDuckGo web search.",
       "version": "1.0.0",
+      "minDegoogVersion": "0.19.0",
       "legacyIds": [
         "duckduckgo",
         "duckduckgo-engine"
@@ -314,6 +326,7 @@
       "name": "Wikipedia",
       "description": "Wikipedia search via the MediaWiki API.",
       "version": "1.0.0",
+      "minDegoogVersion": "0.19.0",
       "legacyIds": [
         "wikipedia",
         "wikipedia-engine"
@@ -324,6 +337,7 @@
       "name": "Reddit",
       "description": "Reddit post search via the public JSON API.",
       "version": "1.0.0",
+      "minDegoogVersion": "0.19.0",
       "legacyIds": [
         "reddit",
         "reddit-engine"
@@ -408,6 +422,7 @@
       "name": "Google Autocomplete",
       "description": "Autocomplete suggestions from Google.",
       "version": "1.1.0",
+      "minDegoogVersion": "0.19.0",
       "legacyIds": [
         "autocomplete-builtin-google",
         "google"
@@ -418,6 +433,7 @@
       "name": "DuckDuckGo Autocomplete",
       "description": "Autocomplete suggestions from DuckDuckGo.",
       "version": "1.1.0",
+      "minDegoogVersion": "0.19.0",
       "legacyIds": [
         "autocomplete-builtin-duckduckgo",
         "duckduckgo"
