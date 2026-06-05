@@ -73,6 +73,8 @@ export const slot = {
   async execute(query, context) {
     const results = context?.results ?? [];
     if (results.length === 0) return { html: "" };
+    if (!_settings.model) return { html: "" };
+    if (_settings.questionMarkOnly && !query.trim().endsWith("?")) return { html: "" };
     const sources = buildSources(results);
     return { html: buildPanelHtml(this.t, query.trim(), sources) };
   },
@@ -95,6 +97,7 @@ export const routes = [
       const results = Array.isArray(body.results) ? body.results : [];
       if (!query || results.length === 0) return jsonError("Missing query or results", 400);
       if (!_settings.model) return jsonError("AI summary not configured", 400);
+      if (_settings.questionMarkOnly && !query.endsWith("?")) return jsonError("Question-only mode", 403);
       return runStream(buildSummaryMsgs(query, results), _settings.maxTokens, summaryCacheKey(query, results), _settings, _summaryCache);
     },
   },
