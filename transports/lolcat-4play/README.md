@@ -6,7 +6,7 @@ If you want the version with curl-impersonate cookie harvesting, use the **degoo
 
 # 4play (lolcat) - degoog transport
 
-Routes searches through a real Firefox session using the official [4play](https://git.lolcat.ca/lolcat/4play) Firefox extension. Degoog runs the WebSocket server itself - you only need to install the extension and point it at degoog. No separate server required.
+Routes searches through a real Firefox session using the official [4play](https://git.lolcat.ca/lolcat/4play) Firefox extension. Degoog runs the WebSocket server itself, you only need to install the extension and point it at degoog. No separate server required.
 
 ## How it works
 
@@ -52,31 +52,13 @@ Settings -> Transports -> 4play (lolcat) -> Configure:
 - **Proxy username** / **Proxy password** - optional credentials.
 - **Proxy DNS** - route DNS through the proxy (recommended for SOCKS to avoid leaks).
 
-Then, in Settings -> Engines -> Configure -> Advanced, pick `lolcat-4play` as the outgoing transport.
-
-## Docker
-
-The WebSocket runs on degoog's main port — no extra ports needed:
-
-```yaml
-services:
-  degoog:
-    image: ghcr.io/degoog-org/degoog:latest
-    ports:
-      - "4444:4444"
-    volumes:
-      - ./data:/app/data
-    restart: unless-stopped
-```
-
-Point the extension at the WebSocket URL shown in the transport settings, substituting your Docker host IP for the hostname.
+Then, in Settings -> Engines -> Configure -> Advanced, pick `lolcat-4play` as the outgoing transport. Point the extension at the WebSocket URL shown in the transport settings, substituting your Docker host IP for the hostname.
 
 ## Behaviour and limits
 
 - **Firefox only** - use degoog-fplay for Chrome/Edge/Brave support.
 - **One browser connection** - a single Firefox instance connects. Parallel engine queries each open their own tab concurrently.
 - **Tabs are visible** - tabs flicker in the connected Firefox window as requests come in.
-- **No curl-impersonate** - Firefox handles HTTP natively, including TLS fingerprinting. No extra binaries required.
 - **Session state is native** - cookies persist across tabs within the same profile. Container isolation keeps parallel requests separated.
 - **Clean profile recommended** - dedicated Firefox profile, no personal data, no interfering extensions.
 
