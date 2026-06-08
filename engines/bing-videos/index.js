@@ -46,7 +46,7 @@ export default class BingVideosEngine {
     const first = (page - 1) * pageSize;
     const lang = context?.lang;
     let url = `https://www.bing.com/videos/search?q=${encodeURIComponent(query)}&count=${pageSize}&first=${first}&FORM=HDRSC3`;
-    if (lang) url += `&setlang=${lang}`;
+    if (lang) url += `&setlang=${lang}&mkt=${lang}`;
     if (this.safeSearch !== "off") url += `&adlt=${this.safeSearch}`;
     if (timeFilter && timeFilter !== "any" && timeFilter !== "custom") {
       const map = { hour: "Hour", day: "Day", week: "Week", month: "Month", year: "Year" };

@@ -19,7 +19,10 @@ export default class BingNewsEngine {
     const offset = (page - 1) * 10;
     const lang = context?.lang;
     const params = new URLSearchParams({ q: query, form: "NSBABR" });
-    if (lang) params.set("setlang", lang);
+    if (lang) {
+      params.set("setlang", lang);
+      params.set("mkt", lang);
+    }
     if (offset > 0) params.set("first", String(offset + 1));
     if (timeFilter && timeFilter !== "any" && timeFilter !== "custom" && TIME_RANGE_MAP[timeFilter]) {
       params.set("qft", TIME_RANGE_MAP[timeFilter]);

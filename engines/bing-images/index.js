@@ -48,7 +48,7 @@ export default class BingImagesEngine {
     const first = (page - 1) * ASYNC_PAGE_SIZE;
     const lang = context?.lang;
     let url = `https://www.bing.com/images/async?q=${encodeURIComponent(query)}&async=content&count=${ASYNC_PAGE_SIZE}&first=${first}`;
-    if (lang) url += `&setlang=${lang}`;
+    if (lang) url += `&setlang=${lang}&mkt=${lang}`;
     const nsfw = context?.imageFilter?.nsfw;
     let adlt = this.safeSearch === "strict" || this.safeSearch === "moderate" ? this.safeSearch : "off";
     if (nsfw === "on") adlt = "strict";

@@ -26,7 +26,7 @@ export default class BingEngine {
     const first = (page - 1) * 50;
     const lang = context?.lang;
     let url = `https://www.bing.com/search?q=${encodeURIComponent(query)}&count=50&first=${first}`;
-    if (lang) url += `&setlang=${lang}`;
+    if (lang) url += `&setlang=${lang}&mkt=${lang}`;
     const adlt =
       this.safeSearch === "strict" || this.safeSearch === "moderate"
         ? this.safeSearch
