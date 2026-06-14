@@ -162,9 +162,13 @@ const _applyFilters = (params, timeFilter, context, safeSearch) => {
   if (context?.lang) params.set("hl", context.lang);
 
   const nsfwOverride = context?.imageFilter?.nsfw;
-  if (nsfwOverride === "on") params.set("safe", "active");
-  else if (nsfwOverride === "off") params.delete("safe");
-  else if (safeSearch === "on") params.set("safe", "active");
+  let wantsSafe = safeSearch === "on";
+  if (nsfwOverride === "on") {
+    wantsSafe = true;
+  } else if (nsfwOverride === "off") {
+    wantsSafe = false;
+  }
+  params.set("safe", wantsSafe ? "active" : "off");
 };
 
 export default class GoogleImagesEngine {
