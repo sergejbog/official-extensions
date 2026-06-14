@@ -308,6 +308,11 @@ export default class FourPlayTransport {
 
     const containerId = data.container || null;
     const cookieJar = seedCookieJarFromHeaders(origin, containerId, data.headers);
+    if (!cookieJar) {
+      console.warn(`[lolcat-4play] ${origin} request has no cookies yet (container=${containerId || "default"}, url=${data.url}); expected for the first homepage hit, waiting for the post-warmup cookie-bearing request`);
+      return;
+    }
+
     const session = {
       headers: data.headers,
       url: data.url,
@@ -318,6 +323,7 @@ export default class FourPlayTransport {
     if (!containerId || containerId === "firefox-default") {
       this._browserHeaderSessions.set(warmupKeyFor(origin, null), session);
     }
+    console.warn(`[lolcat-4play] captured cookie-bearing ${origin} session for curl reuse (container=${containerId || "default"}, url=${data.url})`);
   }
 
   _isReusableBrowserRequest(data = {}) {
@@ -329,7 +335,14 @@ export default class FourPlayTransport {
   _usableHeaderSession(origin, containerId) {
     const session = this._headerSession(origin, containerId);
     if (!session?.headers?.length) return null;
-    if (Date.now() - session.capturedAt > this._warmupTtlMs) return null;
+    if (!session.cookieJar) {
+      console.warn(`[lolcat-4play] discarding poisoned ${origin} session: headers captured but no cookie jar (container=${containerId || "default"}); curl would hit the origin logged-out`);
+      return null;
+    }
+    if (Date.now() - session.capturedAt > this._warmupTtlMs) {
+      console.warn(`[lolcat-4play] ${origin} session expired (container=${containerId || "default"}, age=${Math.round((Date.now() - session.capturedAt) / 1000)}s); will rewarm`);
+      return null;
+    }
     return session;
   }
 
@@ -338,6 +351,7 @@ export default class FourPlayTransport {
   }
 
   _markOriginBlocked(origin, containerId, reason = "blocked") {
+    console.warn(`[lolcat-4play] tainting ${origin} session for ${Math.round(this._blockCooldownMs / 60000)}m (container=${containerId || "default"}, reason: ${reason}); retiring container`);
     this._setWarmupState(origin, containerId, {
       blockedUntil: Date.now() + this._blockCooldownMs,
       reason,
@@ -476,6 +490,7 @@ export default class FourPlayTransport {
   }
 
   async _browserFetch(url, origin, containerId) {
+    console.warn(`[lolcat-4play] direct browser tab fetch for ${url} (container=${containerId || "default"}): no warmed curl session for this origin, returning the pre-JS network body (some origins serve a JS/consent interstitial here)`);
     let tabId = null;
     const pending = this._registerPending(url);
 

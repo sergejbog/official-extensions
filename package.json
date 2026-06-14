@@ -207,7 +207,7 @@
       "path": "transports/lolcat-4play",
       "name": "4play (lolcat)",
       "description": "Fetches pages using a real Firefox session via the official lolcat 4play browser extension.",
-      "version": "1.2.0"
+      "version": "1.2.1"
     },
     {
       "path": "transports/degoog-fplay",
