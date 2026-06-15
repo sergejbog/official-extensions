@@ -67,8 +67,8 @@
     {
       "path": "plugins/math-slot",
       "name": "Math",
-      "description": "Evaluates math expressions and shows the result above search results.",
-      "version": "1.1.2",
+      "description": "Evaluates math expressions straight in the search bar and shows an interactive calculator.",
+      "version": "1.2.0",
       "type": "slot"
     },
     {
