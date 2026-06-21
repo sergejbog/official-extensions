@@ -148,7 +148,7 @@
       "path": "plugins/custom-bangs",
       "name": "Custom Bangs",
       "description": "Define your own bang shortcuts that redirect to any site, optionally injecting your query into a URL template. Type !<shortcut> terms, leading or trailing.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "type": "command",
       "minDegoogVersion": "0.22.0"
     },
@@ -368,7 +368,7 @@
       "path": "engines/startpage",
       "name": "Startpage",
       "description": "Adds the Startpage engine to degoog. You can enable Anonymous View so result links open via Startpage's proxy.",
-      "version": "1.1.7"
+      "version": "1.1.8"
     },
     {
       "path": "engines/internet-archive",

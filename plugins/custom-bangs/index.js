@@ -24,6 +24,11 @@ const normalizeBangs = (input) => {
       url,
       snapDomain: typeof item.snapDomain === "string" ? item.snapDomain.trim() : "",
       regex: typeof item.regex === "string" ? item.regex.trim() : "",
+      naturalLanguage: String(item.naturalLanguage ?? "false") === "true",
+      naturalLanguagePhrases:
+        typeof item.naturalLanguagePhrases === "string"
+          ? item.naturalLanguagePhrases.trim()
+          : "",
       openSnap: String(item.openSnap ?? "false") === "true",
       openBase: String(item.openBase ?? "false") === "true",
       encodeQuery: String(item.encodeQuery ?? "true") === "true",
@@ -44,7 +49,7 @@ const PLACEHOLDER_HELP =
   "Use {{{s}}} or %s in the URL template where the typed query should go.";
 
 const HELP_HINT =
-  "Type <code>!&lt;shortcut&gt; terms</code> (leading or trailing) to fire a bang. A bare bang follows its no-query toggles.";
+  "Type <code>!&lt;shortcut&gt; terms</code> (leading or trailing) to fire a bang.";
 
 const helpScript = `
   (function(){
@@ -86,13 +91,19 @@ const helpScript = `
 const helpRow = (bang) => {
   const example = buildBangUrl(bang, "query");
   const name = bang.name || bang.shortcut;
-  const searchData = `${bang.shortcut} ${name} ${bang.url} ${example}`;
+  const phrases = String(bang.naturalLanguagePhrases || "").trim();
+  const phraseHtml =
+    bang.naturalLanguage && phrases
+      ? `<div class="help-row-desc">Phrases: ${escHtml(phrases)}</div>`
+      : "";
+  const searchData = `${bang.shortcut} ${name} ${bang.url} ${example} ${phrases}`;
   return `<div class="help-row" data-help-search="${escHtml(searchData)}">
     <div class="help-row-main">
       <span class="help-trigger">!${escHtml(bang.shortcut)}</span>
       <span class="help-name">${escHtml(name)}</span>
     </div>
     <div class="help-row-desc">${escHtml(example)}</div>
+    ${phraseHtml}
   </div>`;
 };
 
@@ -154,6 +165,21 @@ export default {
           label: "Regex to parse query terms",
           type: "text",
           placeholder: "",
+        },
+        {
+          key: "naturalLanguage",
+          label: "Natural language",
+          type: "toggle",
+          description:
+            "When on, the phrases below can trigger this bang without typing !.",
+        },
+        {
+          key: "naturalLanguagePhrases",
+          label: "Natural language phrases",
+          type: "text",
+          placeholder: "github, search github, find repo",
+          description:
+            "Comma-separated phrases. Exact phrase or phrase plus trailing query terms will redirect through this bang.",
         },
         { key: "openSnap", label: "Open snap domain when no query", type: "toggle" },
         { key: "openBase", label: "Open base path when no query", type: "toggle" },

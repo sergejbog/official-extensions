@@ -3,6 +3,7 @@ const POST_QUERY_KEY = "degoog-post-query";
 const PLACEHOLDER = /\{\{\{s\}\}\}|%s/g;
 
 let bangMap = null;
+let naturalPhraseList = [];
 let inflight = null;
 
 const isTruthy = (v) => v === true || v === "true";
@@ -90,15 +91,28 @@ const _fetchBangs = async () => {
   }
 };
 
+const _naturalPhrases = (bang) => {
+  if (!isTruthy(bang?.naturalLanguage)) return [];
+  return String(bang.naturalLanguagePhrases || "")
+    .split(",")
+    .map((phrase) => phrase.trim().toLowerCase())
+    .filter(Boolean);
+};
+
 const _refreshBangs = () => {
   if (inflight) return inflight;
   inflight = _fetchBangs()
     .then((list) => {
       bangMap = new Map();
+      naturalPhraseList = [];
       for (const bang of list) {
         const key = String(bang?.shortcut || "").trim().toLowerCase();
         if (key) bangMap.set(key, bang);
+        for (const phrase of _naturalPhrases(bang)) {
+          naturalPhraseList.push({ phrase, bang });
+        }
       }
+      naturalPhraseList.sort((a, b) => b.phrase.length - a.phrase.length);
       return bangMap;
     })
     .finally(() => {
@@ -107,10 +121,23 @@ const _refreshBangs = () => {
   return inflight;
 };
 
+const _matchNaturalBang = (q) => {
+  const lower = q.toLowerCase();
+  for (const { phrase, bang } of naturalPhraseList) {
+    if (lower === phrase || lower.startsWith(`${phrase} `)) {
+      return { bang, terms: q.slice(phrase.length).trim() };
+    }
+  }
+  return null;
+};
+
 const _matchBang = (raw) => {
   if (!bangMap || bangMap.size === 0) return null;
   const q = typeof raw === "string" ? raw.trim() : "";
   if (!q) return null;
+
+  const naturalMatch = _matchNaturalBang(q);
+  if (naturalMatch) return naturalMatch;
 
   if (q.startsWith("!")) {
     const withoutBang = q.slice(1);

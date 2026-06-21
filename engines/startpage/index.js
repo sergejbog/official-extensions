@@ -86,6 +86,13 @@ export default class StartpageEngine {
     if (typeof settings.safeSearch === "string") this.safeSearch = settings.safeSearch;
   }
 
+  _parseError(context, message) {
+    if (context?.engineError) {
+      return context.engineError("parse_error", message, { engine: this.name });
+    }
+    return new Error(message);
+  }
+
   _baseHeaders(context) {
     return {
       "User-Agent": context?.userAgent?.() ?? FALLBACK_UA,
@@ -156,20 +163,24 @@ export default class StartpageEngine {
     }
 
     const jsonStr = _extractSerpJson(html);
-    if (!jsonStr) return [];
+    if (!jsonStr) {
+      throw this._parseError(context, `${this.name} returned a page without parseable results`);
+    }
 
     let data;
     try {
       data = JSON.parse(jsonStr);
     } catch (e) {
       if (e?.name === "SentinelBreach") throw e;
-      return [];
+      throw this._parseError(context, `${this.name} returned malformed result data`);
     }
 
     if (data?.render?.search_sc) this._searchSc = data.render.search_sc;
 
     const mainline = data?.render?.presenter?.regions?.mainline;
-    if (!Array.isArray(mainline)) return [];
+    if (!Array.isArray(mainline)) {
+      throw this._parseError(context, `${this.name} response layout was not recognised`);
+    }
 
     const results = [];
     for (const block of mainline) {
