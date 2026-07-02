@@ -318,7 +318,7 @@
       "path": "engines/brave-news",
       "name": "Brave News",
       "description": "Brave news search.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "minDegoogVersion": "0.19.0",
       "legacyIds": [
         "brave-news",
